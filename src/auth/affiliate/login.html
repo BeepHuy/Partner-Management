@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/logo.jpg" type="image/x-icon">
+    <title>KyrenHuy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css"
+        integrity="sha512-6f7HT84a/AplPkpSRSKWqbseRTG4aRrhadjZezYQ0oVk/B+nm/US5KzQkyyOyh0Mn9cyDdChRdS9qaxJRHayww=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../../dist/app.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+
+<body class="min-h-screen flex items-center justify-center bg-auth-body">
+    <div class="w-full">
+        <section class="w-[1000px] min-h-[600px] mx-auto flex items-stretch rounded-[10px] overflow-hidden">
+            <!-- Login Info Section -->
+            <div class="flex-1 py-5 bg-navy-dark text-white flex items-center justify-center">
+                <div class="w-full max-w-[430px] text-center px-4">
+                    <!-- Logo -->
+                    <div class="mb-4">
+                        <img src="../../assets/logo-images/logo 1.png" alt="Worldwide Affiliate"
+                            class="w-[94px] mx-auto">
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="text-[22px] font-extrabold mb-1.5">Worldwide Affiliate</h1>
+                    <p class="text-base opacity-80 mb-8">Sign in to continue</p>
+
+                    <!-- Form -->
+                    <form class="login-gorm">
+                        <!-- Email Field -->
+                        <div class="text-left mb-5">
+                            <label class="text-base font-bold mb-1.5 block">Email</label>
+                            <input type="email" placeholder=""
+                                class="w-full h-10 text-base rounded-[10px] border border-white px-3.5 bg-white/25 text-white placeholder-white/60 focus:outline-none focus:bg-white/50">
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="text-left mb-5">
+                            <label class="text-base font-bold mb-1.5 block">Password</label>
+                            <div class="relative">
+                                <input type="password" id="passwordInput"
+                                    class="w-full h-10 text-base rounded-[10px] border border-white px-3.5 bg-white/25 text-white placeholder-white/60 focus:outline-none focus:bg-white/50">
+                                <span id="toggleEye"
+                                    class="absolute right-3.5 top-1/2 -translate-y-1/2 cursor-pointer opacity-80 hover:opacity-100">
+                                    <i class="fa fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Options -->
+                        <div class="flex justify-between text-base my-3.5 mb-7">
+                            <a href="#" class="text-white hover:underline">Password Recovering</a>
+                            <label class="flex gap-1.5 items-center cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 cursor-pointer">
+                                <span>Remember Me</span>
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit"
+                            class="w-[200px] h-11 text-base rounded-[10px] border-none bg-white text-navy-light font-extrabold cursor-pointer mb-7 transition-transform duration-300 hover:scale-105">
+                            SIGN IN
+                        </button>
+                    </form>
+
+                    <!-- Footer Links -->
+                    <div class="flex justify-between text-[13px] mb-6">
+                        <a href="#" class="text-base font-semibold text-white no-underline hover:underline">
+                            Terms And Conditions
+                        </a>
+                        <a href="#" class="text-base font-semibold text-white no-underline hover:underline">
+                            Privacy Policy
+                        </a>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex justify-center gap-4">
+                        <a href="#"
+                            class="w-9 h-9 rounded-md bg-[#1877f2] flex items-center justify-center text-white hover:opacity-80 transition-opacity">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 rounded-md bg-[#0a66c2] flex items-center justify-center text-white hover:opacity-80 transition-opacity">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 rounded-md bg-[#1da1f2] flex items-center justify-center text-white hover:opacity-80 transition-opacity">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 bg-white flex items-center justify-center overflow-hidden">
+                <img src="../../assets/images/auth/about-image.png" alt="Preview"
+                    class="w-full h-full object-cover block">
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const toggleEye = document.getElementById('toggleEye');
+        const passwordInput = document.getElementById('passwordInput');
+        const eyeIcon = toggleEye.querySelector('i');
+
+        toggleEye.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        });
+
+        // Form submit
+        document.querySelector('.login-gorm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Form submitted!');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Kim Huy </title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Notyf CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
+  <style>
+    /* Custom scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(77, 208, 225, 0.5);
+      border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(77, 208, 225, 0.7);
+    }
+
+    /* Smooth transitions */
+    .form-step {
+      transition: opacity 0.3s ease;
+    }
+
+    /* Background sliding indicator animation */
+    .step-background {
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Progress bar animation */
+    .progress-fill {
+      transition: width 0.5s ease;
+    }
+
+    /* Custom select arrow */
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      appearance: none;
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00265D',
+            accent: '#4dd0e1',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gradient-to-br from-primary via-white to-primary min-h-screen flex justify-center items-center p-3">
+  <div class="bg-primary w-full max-w-[1100px] rounded-xl shadow-2xl overflow-hidden">
+
+    <!-- Header -->
+    <div class="h-20 flex justify-between items-center px-10 border-b-2 border-white">
+      <div class="flex items-center max-w-[260px] h-full">
+        <img src="../../assets/logo-images/logo 1.png" alt="Logo" class="max-h-[60px] w-auto object-contain">
+      </div>
+      <button
+        class="w-[110px] h-10 bg-white text-primary font-semibold rounded-full hover:transform hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">
+        Login
+      </button>
+    </div>
+
+    <!-- Progress Section (Tablet/Mobile) -->
+    <div class="hidden lg:hidden px-5 py-4 border-b-2 border-white" id="progressSection">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-white text-sm font-medium">Step <span id="currentStepText">1</span> of 5</span>
+        <span class="text-white text-sm font-medium" id="currentStepName">Account detail</span>
+      </div>
+      <div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden mb-4">
+        <div class="h-full bg-accent rounded-full progress-fill" id="progressFill" style="width: 20%"></div>
+      </div>
+
+      <!-- Step Pills (Tablet) -->
+      <div class="flex justify-center flex-wrap gap-2" id="stepPills">
+        <div
+          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-white text-primary border-2 border-white rounded-full font-medium text-sm cursor-pointer transition-all hover:border-white/50"
+          data-step="1">
+          <div
+            class="pill-indicator w-5 h-5 rounded-full bg-accent text-primary flex items-center justify-center text-xs font-semibold">
+            1</div>
+          <span class="pill-text">Account</span>
+        </div>
+        <div
+          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-transparent border-2 border-white/30 rounded-full text-white font-medium text-sm cursor-pointer transition-all hover:border-white/50"
+          data-step="2">
+          <div
+            class="pill-indicator w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-xs font-semibold">
+            2</div>
+          <span class="pill-text">User</span>
+        </div>
+        <div
+          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-transparent border-2 border-white/30 rounded-full text-white font-medium text-sm cursor-pointer transition-all hover:border-white/50"
+          data-step="3">
+          <div
+            class="pill-indicator w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-xs font-semibold">
+            3</div>
+          <span class="pill-text">Traffic</span>
+        </div>
+        <div
+          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-transparent border-2 border-white/30 rounded-full text-white font-medium text-sm cursor-pointer transition-all hover:border-white/50"
+          data-step="4">
+          <div
+            class="pill-indicator w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-xs font-semibold">
+            4</div>
+          <span class="pill-text">Additional</span>
+        </div>
+        <div
+          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-transparent border-2 border-white/30 rounded-full text-white font-medium text-sm cursor-pointer transition-all hover:border-white/50"
+          data-step="5">
+          <div
+            class="pill-indicator w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-xs font-semibold">
+            5</div>
+          <span class="pill-text">Terms</span>
+        </div>
+      </div>
+
+      <!-- Step Numbers (Mobile) -->
+      <div class="hidden justify-center gap-4" id="stepNumbers">
+        <div
+          class="step-number w-9 h-9 rounded-full bg-accent border-2 border-accent text-primary font-semibold text-sm flex items-center justify-center cursor-pointer transition-all"
+          data-step="1">1</div>
+        <div
+          class="step-number w-9 h-9 rounded-full bg-transparent border-2 border-white/30 text-white font-semibold text-sm flex items-center justify-center cursor-pointer transition-all"
+          data-step="2">2</div>
+        <div
+          class="step-number w-9 h-9 rounded-full bg-transparent border-2 border-white/30 text-white font-semibold text-sm flex items-center justify-center cursor-pointer transition-all"
+          data-step="3">3</div>
+        <div
+          class="step-number w-9 h-9 rounded-full bg-transparent border-2 border-white/30 text-white font-semibold text-sm flex items-center justify-center cursor-pointer transition-all"
+          data-step="4">4</div>
+        <div
+          class="step-number w-9 h-9 rounded-full bg-transparent border-2 border-white/30 text-white font-semibold text-sm flex items-center justify-center cursor-pointer transition-all"
+          data-step="5">5</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="flex min-h-[600px] max-h-[calc(100dvh-200px)]">
+
+      <!-- Sidebar (Desktop) -->
+      <div
+        class="hidden lg:block w-auto min-w-[220px] max-w-[280px] pt-24 px-5 pb-5 border-r-2 border-white relative flex-shrink-0">
+        <div class="step-background absolute left-0 top-0 w-full h-10 bg-white border-l-4 border-accent"
+          id="stepBackground"></div>
+
+        <div
+          class="sidebar-step relative py-2.5 px-3 text-base text-black font-bold cursor-pointer mb-9 whitespace-nowrap transition-all hover:text-accent z-10"
+          data-step="1">
+          <span>Account detail</span>
+          <div
+            class="step-indicator absolute -right-7 top-1/2 -translate-y-[60%] w-4 h-4 rounded-full bg-accent border-2 border-primary shadow-[0_0_10px_#4dd0e1] z-20 flex items-center justify-center text-white text-[10px] font-bold">
+            ✓
+          </div>
+        </div>
+        <div
+          class="sidebar-step relative py-2.5 px-3 text-base text-white font-bold cursor-pointer mb-9 whitespace-nowrap transition-all hover:text-accent z-10"
+          data-step="2">
+          <span>User detail</span>
+          <div
+            class="step-indicator absolute -right-7 top-1/2 -translate-y-[60%] w-4 h-4 rounded-full bg-accent border-2 border-primary shadow-[0_0_10px_#4dd0e1] z-20 flex items-center justify-center text-white text-[10px] font-bold">
+            ✓
+          </div>
+        </div>
+        <div
+          class="sidebar-step relative py-2.5 px-3 text-base text-white font-bold cursor-pointer mb-9 whitespace-nowrap transition-all hover:text-accent z-10"
+          data-step="3">
+          <span>Traffic Detail</span>
+          <div
+            class="step-indicator absolute -right-7 top-1/2 -translate-y-[60%] w-4 h-4 rounded-full bg-accent border-2 border-primary shadow-[0_0_10px_#4dd0e1] z-20 flex items-center justify-center text-white text-[10px] font-bold">
+            ✓
+          </div>
+        </div>
+        <div
+          class="sidebar-step relative py-2.5 px-3 text-base text-white font-bold cursor-pointer mb-9 whitespace-nowrap transition-all hover:text-accent z-10"
+          data-step="4">
+          <span>Additional Information</span>
+          <div
+            class="step-indicator absolute -right-7 top-1/2 -translate-y-[60%] w-4 h-4 rounded-full bg-accent border-2 border-primary shadow-[0_0_10px_#4dd0e1] z-20 flex items-center justify-center text-white text-[10px] font-bold">
+            ✓
+          </div>
+        </div>
+        <div
+          class="sidebar-step relative py-2.5 px-3 text-base text-white font-bold cursor-pointer mb-9 whitespace-nowrap transition-all hover:text-accent z-10"
+          data-step="5">
+          <span>Terms and Conditions</span>
+          <div
+            class="step-indicator absolute -right-7 top-1/2 -translate-y-[60%] w-4 h-4 rounded-full bg-accent border-2 border-primary shadow-[0_0_10px_#4dd0e1] z-20 flex items-center justify-center text-white text-[10px] font-bold">
+            ✓
+          </div>
+        </div>
+      </div>
+
+      <!-- Register Content -->
+      <div class="flex-1 p-6 lg:p-10 overflow-y-auto custom-scrollbar">
+        <div class="relative w-full h-full" id="formStepsContainer">
+
+          <!-- Step 1: Account Detail -->
+          <div class="form-step opacity-100 pointer-events-auto" id="step1" data-step="1">
+            <h2 class="text-2xl text-white font-semibold mb-2">Account detail</h2>
+            <p class="text-gray-300 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
+              below.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Company Name <span
+                    class="text-red-400">*</span></label>
+                <input type="text" name="companyName" placeholder="Enter company name" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Company Website <span
+                    class="text-red-400">*</span></label>
+                <input type="url" name="companyWebsite" placeholder="https://" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Address <span
+                    class="text-red-400">*</span></label>
+                <input type="text" name="address" placeholder="Enter address" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">City <span
+                    class="text-red-400">*</span></label>
+                <input type="text" name="city" placeholder="Enter city" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Country <span
+                    class="text-red-400">*</span></label>
+                <select name="country" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all cursor-pointer">
+                  <option value="" class="bg-primary text-white">Select country</option>
+                  <option value="vn" class="bg-primary text-white">Vietnam</option>
+                  <option value="us" class="bg-primary text-white">United States</option>
+                  <option value="uk" class="bg-primary text-white">United Kingdom</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">State/Region <span
+                    class="text-red-400">*</span></label>
+                <select name="state" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all cursor-pointer">
+                  <option value="" class="bg-primary text-white">Select region</option>
+                  <option value="hcm" class="bg-primary text-white">Ho Chi Minh</option>
+                  <option value="hn" class="bg-primary text-white">Ha Noi</option>
+                  <option value="dn" class="bg-primary text-white">Da Nang</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">ZIP/Postal Code <span
+                    class="text-red-400">*</span></label>
+                <input type="text" name="zipCode" placeholder="Enter postal code" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+              <div class="form-group"></div>
+            </div>
+
+            <div class="flex justify-between items-center gap-4 mt-6 pt-5 border-t border-white/20">
+              <div class="flex-1"></div>
+              <div class="flex-1 text-center hidden md:block">
+                <span class="text-white text-sm font-medium">Step 1 of 5</span>
+              </div>
+              <div class="flex-1 text-right">
+                <button
+                  class="bg-white text-primary px-7 py-3 rounded-md font-semibold text-base hover:-translate-y-0.5 hover:shadow-lg transition-all"
+                  onclick="nextStep()">Next →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: User Detail -->
+          <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step2" data-step="2">
+            <h2 class="text-2xl text-white font-semibold mb-2">User detail</h2>
+            <p class="text-gray-300 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
+              below. <span class="text-red-400">*</span> - required field</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">First Name <span
+                    class="text-red-400">*</span></label>
+                <input type="text" name="firstName" placeholder="Enter first name" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Last Name <span
+                    class="text-red-400">*</span></label>
+                <input type="text" name="lastName" placeholder="Enter last name" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Email <span
+                    class="text-red-400">*</span></label>
+                <input type="email" name="email" placeholder="Enter email" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Email Confirmation <span
+                    class="text-red-400">*</span></label>
+                <input type="email" name="emailConfirm" placeholder="Confirm email" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Password <span
+                    class="text-red-400">*</span></label>
+                <input type="password" name="password" placeholder="Enter password" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Confirm Password <span
+                    class="text-red-400">*</span></label>
+                <input type="password" name="passwordConfirm" placeholder="Confirm password" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Phone Number <span
+                    class="text-red-400">*</span></label>
+                <input type="tel" name="phone" placeholder="Enter phone number" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+              <div class="form-group"></div>
+            </div>
+
+            <div class="flex items-center justify-between gap-3 mt-6 pt-5 border-t border-white/20">
+              <!-- Prev -->
+              <div class="flex-shrink-0">
+                <button
+                  class="bg-white/20 text-white border-2 border-white/50 px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white/30 transition-all"
+                  onclick="prevStep()">
+                  ← Prev
+                </button>
+              </div>
+              <!-- Step text -->
+              <div class="flex-1 text-center">
+                <span class="text-white text-sm font-medium">
+                  Step 2 of 5
+                </span>
+              </div>
+              <!-- Next -->
+              <div class="flex-shrink-0">
+                <button
+                  class="bg-white text-primary px-6 py-2.5 rounded-full font-semibold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all"
+                  onclick="nextStep()">
+                  Next →
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Step 3: Traffic Detail -->
+          <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step3" data-step="3">
+            <h2 class="text-2xl text-white font-semibold mb-2">Traffic Detail</h2>
+            <p class="text-gray-300 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
+              below. <span class="text-red-400">*</span> - required field</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Promotional Method <span
+                    class="text-red-400">*</span></label>
+                <input type="text" name="promotionalMethod" placeholder="Enter promotional method" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Countries <span
+                    class="text-red-400">*</span></label>
+                <input type="text" name="countries" placeholder="Enter countries" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Property Type <span
+                    class="text-red-400">*</span></label>
+                <input type="text" name="propertyType" placeholder="Enter property type" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">URL <span class="text-red-400">*</span></label>
+                <input type="url" name="url" placeholder="Enter URL" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between gap-3 mt-6 pt-5 border-t border-white/20">
+              <!-- Prev -->
+              <div class="flex-shrink-0">
+                <button
+                  class="bg-white/20 text-white border-2 border-white/50 px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white/30 transition-all"
+                  onclick="prevStep()">
+                  ← Prev
+                </button>
+              </div>
+              <!-- Step text -->
+              <div class="flex-1 text-center">
+                <span class="text-white text-sm font-medium">
+                  Step 3 of 5
+                </span>
+              </div>
+              <!-- Next -->
+              <div class="flex-shrink-0">
+                <button
+                  class="bg-white text-primary px-6 py-2.5 rounded-full font-semibold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all"
+                  onclick="nextStep()">
+                  Next →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Additional Information -->
+          <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step4" data-step="4">
+            <h2 class="text-2xl text-white font-semibold mb-2">Additional Information</h2>
+            <p class="text-gray-300 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
+              below. <span class="text-red-400">*</span> - required field</p>
+
+            <div class="grid grid-cols-1 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Referral Code</label>
+                <input type="text" name="referralCode" placeholder="Enter referral code (optional)"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Marketing Channels <span
+                    class="text-red-400">*</span></label>
+                <input type="text" name="marketingChannels" placeholder="Enter marketing channels" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Affiliate Classification <span
+                    class="text-red-400">*</span></label>
+                <input type="text" name="affiliateClassification" placeholder="Enter classification"
+                  data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Marketing Channels Description <span
+                    class="text-red-400">*</span></label>
+                <textarea name="marketingChannelsDesc" placeholder="Enter marketing channels details"
+                  data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40 resize-y min-h-[70px]"></textarea>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Describe the sites and methods used to
+                  advertise <span class="text-red-400">*</span></label>
+                <textarea name="advertiseMethods" placeholder="Describe your advertising methods" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md text-white text-base focus:outline-none focus:border-accent focus:shadow-[0_0_10px_rgba(77,208,225,0.3)] focus:bg-[rgba(15,12,38,0.6)] transition-all placeholder:text-white/40 resize-y min-h-[70px]"></textarea>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between gap-3 mt-6 pt-5 border-t border-white/20">
+              <!-- Prev -->
+              <div class="flex-shrink-0">
+                <button
+                  class="bg-white/20 text-white border-2 border-white/50 px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white/30 transition-all"
+                  onclick="prevStep()">
+                  ← Prev
+                </button>
+              </div>
+              <!-- Step text -->
+              <div class="flex-1 text-center">
+                <span class="text-white text-sm font-medium">
+                  Step 4 of 5
+                </span>
+              </div>
+              <!-- Next -->
+              <div class="flex-shrink-0">
+                <button
+                  class="bg-white text-primary px-6 py-2.5 rounded-full font-semibold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all"
+                  onclick="nextStep()">
+                  Next →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5: Terms and Conditions -->
+          <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step5" data-step="5">
+            <h2 class="text-2xl text-white font-semibold mb-2">Terms and Conditions</h2>
+            <p class="text-gray-300 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
+              below. <span class="text-red-400">*</span> - required field</p>
+
+            <div class="grid grid-cols-1 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-bold text-white mb-2">Terms of Service</label>
+                <div
+                  class="bg-[rgba(15,12,38,0.4)] border-2 border-white rounded-md p-5 max-h-[220px] overflow-y-auto custom-scrollbar text-white text-sm leading-relaxed">
+                  <p class="mb-3">This Service Agreement ("Agreement") is established between Ray Advertising LLC
+                    (referred to as the "Company") and the Lead Provider specified in the Insertion Order, which is
+                    expressly referenced and incorporated into this Agreement. Each entity may individually be referred
+                    to as a "Party" or collectively as the "Parties."</p>
+
+                  <h4 class="text-accent font-semibold mb-2">Recitals:</h4>
+                  <p class="mb-3">Acknowledging the Insertion Order: The terms outlined in the "Insertion Order" are
+                    tailored specifically to govern the relationship between the Company and the Lead Provider. These
+                    terms shall take precedence over and override any conflicting provisions within this Agreement.</p>
+
+                  <h4 class="text-accent font-semibold mb-2">Scope of Lead Provider's Engagement:</h4>
+                  <p class="mb-3">The Lead Provider agrees to execute a range of advertising and marketing campaigns on
+                    behalf of the Company. The specifications and operational details of these campaigns will be defined
+                    in order form, each of which will automatically be integrated into and considered an integral
+                    component of this Agreement.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 mt-5">
+              <input type="checkbox" id="agreeTerms" name="agreeTerms" data-required="true"
+                class="w-5 h-5 cursor-pointer accent-accent">
+              <label for="agreeTerms" class="text-white text-base font-normal cursor-pointer">
+                I agree to Ray Advertising's Terms of Service <span class="text-red-400">*</span>
+              </label>
+            </div>
+            <div class="flex items-center justify-between gap-3 mt-6 pt-5 border-t border-white/20">
+              <!-- Prev -->
+              <div class="flex-shrink-0">
+                <button
+                  class="bg-white/20 text-white border-2 border-white/50 px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white/30 transition-all"
+                  onclick="prevStep()">
+                  ← Prev
+                </button>
+              </div>
+              <!-- Step text -->
+              <div class="flex-1 text-center">
+                <span class="text-white text-sm font-medium">
+                  Step 2 of 5
+                </span>
+              </div>
+              <!-- Next -->
+              <div class="flex-shrink-0">
+                <button
+                  class="bg-white text-primary px-6 py-2.5 rounded-full font-semibold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all"
+                  onclick="submitForm()">
+                  Sign Up
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+  <script>
+    const notyf = new Notyf({
+      duration: 5000,
+      position: { x: 'right', y: 'top' },
+      dismissible: true,
+      ripple: true
+    });
+
+    let currentStep = 1;
+    const totalSteps = 5;
+
+    const stepNames = {
+      1: 'Account detail',
+      2: 'User detail',
+      3: 'Traffic Detail',
+      4: 'Additional Information',
+      5: 'Terms and Conditions'
+    };
+
+    const stepCompleted = {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false
+    };
+
+    const steps = document.querySelectorAll('.form-step');
+    const sidebarSteps = document.querySelectorAll('.sidebar-step');
+    const stepPills = document.querySelectorAll('.step-pill');
+    const stepNumbers = document.querySelectorAll('.step-number');
+    const background = document.getElementById('stepBackground');
+    const progressFill = document.getElementById('progressFill');
+    const currentStepText = document.getElementById('currentStepText');
+    const currentStepName = document.getElementById('currentStepName');
+
+    // Show progress section on mobile/tablet
+    function updateProgressVisibility() {
+      const progressSection = document.getElementById('progressSection');
+      const stepPillsContainer = document.getElementById('stepPills');
+      const stepNumbersContainer = document.getElementById('stepNumbers');
+
+      if (window.innerWidth < 1024) {
+        progressSection.classList.remove('hidden');
+        progressSection.classList.add('block');
+
+        if (window.innerWidth < 768) {
+          stepPillsContainer.classList.add('hidden');
+          stepNumbersContainer.classList.remove('hidden');
+          stepNumbersContainer.classList.add('flex');
+        } else {
+          stepPillsContainer.classList.remove('hidden');
+          stepPillsContainer.classList.add('flex');
+          stepNumbersContainer.classList.add('hidden');
+          stepNumbersContainer.classList.remove('flex');
+        }
+      } else {
+        progressSection.classList.add('hidden');
+        progressSection.classList.remove('block');
+      }
+    }
+
+    // Validate current step
+    function validateCurrentStep() {
+      const currentStepElement = document.querySelector(`#step${currentStep}`);
+      const requiredInputs = currentStepElement.querySelectorAll('[data-required="true"]');
+      let isValid = true;
+
+      requiredInputs.forEach(input => {
+        const value = input.value.trim();
+        input.classList.remove('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+
+        if (input.type === 'checkbox') {
+          if (!input.checked) {
+            input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+            isValid = false;
+          }
+        } else if (!value || value === '') {
+          input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+          isValid = false;
+        }
+      });
+
+      return isValid;
+    }
+
+    // Validate all steps for submit
+    function validateAllStepsForSubmit() {
+      let allErrors = [];
+
+      document.querySelectorAll('[data-required="true"]').forEach(el => {
+        el.classList.remove('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+      });
+
+      for (let stepNum = 1; stepNum <= totalSteps; stepNum++) {
+        const stepElement = document.querySelector(`#step${stepNum}`);
+        const requiredInputs = stepElement.querySelectorAll('[data-required="true"]');
+
+        requiredInputs.forEach(input => {
+          const value = input.value.trim();
+          let errorMessage = null;
+
+          const label = input.closest('.form-group')?.querySelector('label');
+          const fieldName = label ? label.textContent.replace('*', '').trim() : 'Field';
+          const stepName = stepNames[stepNum];
+
+          if (input.type === 'checkbox') {
+            if (!input.checked) {
+              input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+              errorMessage = {
+                field: fieldName,
+                message: `Bạn chưa đồng ý với điều khoản`,
+                step: stepName,
+                stepNum: stepNum
+              };
+            }
+          } else if (!value || value === '') {
+            input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+            errorMessage = {
+              field: fieldName,
+              message: `${fieldName} không được để trống`,
+              step: stepName,
+              stepNum: stepNum
+            };
+          } else {
+            // Validate chi tiết
+            if (input.type === 'email') {
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!emailRegex.test(value)) {
+                input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+                errorMessage = {
+                  field: fieldName,
+                  message: `${fieldName} không đúng định dạng email`,
+                  step: stepName,
+                  stepNum: stepNum
+                };
+              } else if (value === 'test@example.com') {
+                input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+                errorMessage = {
+                  field: fieldName,
+                  message: `${fieldName} đã tồn tại trong hệ thống`,
+                  step: stepName,
+                  stepNum: stepNum
+                };
+              }
+            } else if (input.type === 'url' || input.name === 'companyWebsite' || input.name === 'url') {
+              if (!value.startsWith('http://') && !value.startsWith('https://')) {
+                input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+                errorMessage = {
+                  field: fieldName,
+                  message: `${fieldName} phải bắt đầu với http:// hoặc https://`,
+                  step: stepName,
+                  stepNum: stepNum
+                };
+              }
+            } else if (input.type === 'tel' || input.name === 'phone') {
+              const phoneRegex = /^[0-9+\-\s()]+$/;
+              if (!phoneRegex.test(value)) {
+                input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+                errorMessage = {
+                  field: fieldName,
+                  message: `${fieldName} chỉ được chứa số và ký tự +, -, (, )`,
+                  step: stepName,
+                  stepNum: stepNum
+                };
+              } else if (value.replace(/[^0-9]/g, '').length < 10) {
+                input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+                errorMessage = {
+                  field: fieldName,
+                  message: `${fieldName} phải có ít nhất 10 chữ số`,
+                  step: stepName,
+                  stepNum: stepNum
+                };
+              }
+            } else if (input.type === 'password') {
+              if (value.length < 6) {
+                input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+                errorMessage = {
+                  field: fieldName,
+                  message: `${fieldName} phải có ít nhất 6 ký tự`,
+                  step: stepName,
+                  stepNum: stepNum
+                };
+              }
+              if (input.name === 'passwordConfirm') {
+                const password = stepElement.querySelector('[name="password"]').value;
+                if (value !== password) {
+                  input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+                  errorMessage = {
+                    field: fieldName,
+                    message: `${fieldName} không khớp với mật khẩu`,
+                    step: stepName,
+                    stepNum: stepNum
+                  };
+                }
+              }
+            } else if (input.name === 'emailConfirm') {
+              const email = stepElement.querySelector('[name="email"]').value;
+              if (value !== email) {
+                input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+                errorMessage = {
+                  field: fieldName,
+                  message: `${fieldName} không khớp với email`,
+                  step: stepName,
+                  stepNum: stepNum
+                };
+              }
+            } else if (input.name === 'zipCode') {
+              const zipRegex = /^[0-9]{4,10}$/;
+              if (!zipRegex.test(value)) {
+                input.classList.add('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+                errorMessage = {
+                  field: fieldName,
+                  message: `${fieldName} chỉ được chứa số (4-10 ký tự)`,
+                  step: stepName,
+                  stepNum: stepNum
+                };
+              }
+            }
+          }
+
+          if (errorMessage) {
+            allErrors.push(errorMessage);
+          }
+        });
+      }
+
+      return allErrors;
+    }
+
+    function showErrorToasts(errors) {
+      errors.forEach((error, index) => {
+        setTimeout(() => {
+          notyf.error(`[${error.step}] ${error.message}`);
+        }, index * 800);
+      });
+    }
+
+    function attachInputListeners() {
+      const allInputs = document.querySelectorAll('[data-required="true"]');
+
+      allInputs.forEach(input => {
+        if (input.type === 'checkbox') {
+          input.addEventListener('change', function () {
+            if (this.checked) {
+              this.classList.remove('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+            }
+          });
+        } else {
+          input.addEventListener('input', function () {
+            if (this.value.trim() !== '') {
+              this.classList.remove('border-red-500', 'shadow-[0_0_6px_rgba(255,77,79,0.6)]');
+            }
+          });
+        }
+      });
+    }
+
+    function updateSteps() {
+      // Update form steps
+      steps.forEach((step, index) => {
+        const stepNum = index + 1;
+        if (stepNum === currentStep) {
+          step.classList.remove('absolute', 'opacity-0', 'pointer-events-none');
+          step.classList.add('opacity-100', 'pointer-events-auto');
+        } else {
+          step.classList.add('absolute', 'opacity-0', 'pointer-events-none');
+          step.classList.remove('opacity-100', 'pointer-events-auto');
+        }
+      });
+
+      // Update sidebar (Desktop)
+      sidebarSteps.forEach((step, index) => {
+        const stepNum = index + 1;
+        const indicator = step.querySelector('.step-indicator');
+
+        if (stepNum === currentStep) {
+          step.classList.remove('text-white');
+          step.classList.add('text-black');
+          indicator.classList.remove('bg-gray-600');
+          indicator.classList.add('bg-accent', 'shadow-[0_0_10px_#4dd0e1]');
+        } else if (stepCompleted[stepNum]) {
+          step.classList.add('text-white');
+          step.classList.remove('text-black');
+          indicator.classList.remove('bg-gray-600');
+          indicator.classList.add('bg-accent');
+          indicator.innerHTML = '✓';
+        } else {
+          step.classList.add('text-white');
+          step.classList.remove('text-black');
+          indicator.classList.add('bg-gray-600');
+          indicator.classList.remove('bg-accent', 'shadow-[0_0_10px_#4dd0e1]');
+          indicator.innerHTML = '';
+        }
+      });
+
+      // Update step pills (Tablet)
+      stepPills.forEach((pill, index) => {
+        const stepNum = index + 1;
+        const indicator = pill.querySelector('.pill-indicator');
+        const text = pill.querySelector('.pill-text');
+
+        // reset màu chữ
+        text.classList.remove('text-white', 'text-primary');
+
+        if (stepNum === currentStep) {
+          pill.classList.remove('bg-transparent', 'border-white/30');
+          pill.classList.add('bg-white', 'border-white');
+
+          text.classList.add('text-primary');
+
+          indicator.classList.remove('bg-white/20');
+          indicator.classList.add('bg-accent', 'text-primary');
+          indicator.textContent = stepNum;
+
+        } else if (stepCompleted[stepNum]) {
+          pill.classList.remove('bg-white');
+          pill.classList.add('bg-transparent', 'border-accent');
+
+          text.classList.add('text-white');
+
+          indicator.classList.remove('bg-white/20');
+          indicator.classList.add('bg-accent', 'text-primary');
+          indicator.textContent = '✓';
+
+        } else {
+          pill.classList.remove('bg-white', 'border-accent');
+          pill.classList.add('bg-transparent', 'border-white/30');
+
+          text.classList.add('text-white');
+
+          indicator.classList.add('bg-white/20');
+          indicator.classList.remove('bg-accent', 'text-primary');
+          indicator.textContent = stepNum;
+        }
+      });
+
+      // Update step numbers (Mobile)
+      stepNumbers.forEach((num, index) => {
+        const stepNum = index + 1;
+
+        if (stepNum === currentStep) {
+          num.classList.remove('bg-transparent', 'border-white/30', 'text-white', 'text-accent');
+          num.classList.add('bg-accent', 'border-accent', 'text-primary');
+          num.textContent = stepNum;
+        } else if (stepCompleted[stepNum]) {
+          num.classList.remove('bg-accent', 'text-primary');
+          num.classList.add('bg-transparent', 'border-accent', 'text-accent');
+          num.textContent = '✓';
+        } else {
+          num.classList.remove('bg-accent', 'border-accent', 'text-primary', 'text-accent');
+          num.classList.add('bg-transparent', 'border-white/30', 'text-white');
+          num.textContent = stepNum;
+        }
+      });
+
+      // Update progress bar
+      const progress = (currentStep / totalSteps) * 100;
+      progressFill.style.width = `${progress}%`;
+
+      // Update step text
+      currentStepText.textContent = currentStep;
+      currentStepName.textContent = stepNames[currentStep];
+
+      // Move sidebar background
+      moveBackground();
+    }
+
+    function moveBackground() {
+      const currentStepElement = document.querySelector(`.sidebar-step[data-step="${currentStep}"]`);
+      if (currentStepElement && background) {
+        background.style.transform = `translateY(${currentStepElement.offsetTop}px)`;
+      }
+    }
+
+    function nextStep() {
+      if (!validateCurrentStep()) {
+        return;
+      }
+
+      stepCompleted[currentStep] = true;
+
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateSteps();
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        updateSteps();
+      }
+    }
+
+    function submitForm() {
+      const errors = validateAllStepsForSubmit();
+
+      if (errors.length > 0) {
+        const firstErrorStep = errors[0].stepNum;
+        currentStep = firstErrorStep;
+        updateSteps();
+        showErrorToasts(errors);
+        return;
+      }
+
+      stepCompleted[currentStep] = true;
+      notyf.success('Đăng ký thành công! Cảm ơn bạn đã đăng ký với Ray Advertising.');
+
+      setTimeout(() => {
+        console.log('Form submitted successfully');
+        // window.location.href = '/success-page';
+      }, 2000);
+    }
+
+    // Handle step clicks
+    function handleStepClick(targetStep) {
+      if (targetStep === currentStep) return;
+
+      if (targetStep < currentStep) {
+        currentStep = targetStep;
+        updateSteps();
+        return;
+      }
+
+      if (!validateCurrentStep()) {
+        return;
+      }
+
+      stepCompleted[currentStep] = true;
+      currentStep = targetStep;
+      updateSteps();
+    }
+
+    // Sidebar click events
+    sidebarSteps.forEach(step => {
+      step.addEventListener('click', () => {
+        const targetStep = parseInt(step.dataset.step, 10);
+        handleStepClick(targetStep);
+      });
+    });
+
+    // Step pill click events
+    stepPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const targetStep = parseInt(pill.dataset.step, 10);
+        handleStepClick(targetStep);
+      });
+    });
+
+    // Step number click events
+    stepNumbers.forEach(num => {
+      num.addEventListener('click', () => {
+        const targetStep = parseInt(num.dataset.step, 10);
+        handleStepClick(targetStep);
+      });
+    });
+
+    // Initialize
+    attachInputListeners();
+    updateSteps();
+    updateProgressVisibility();
+    window.addEventListener('resize', () => {
+      moveBackground();
+      updateProgressVisibility();
+    });
+  </script>
+
+</body>
+
+</html>
