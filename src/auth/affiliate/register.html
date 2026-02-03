@@ -6,12 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Kim Huy </title>
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Notyf CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
-
   <style>
     /* Custom scrollbar */
     .custom-scrollbar::-webkit-scrollbar {
@@ -52,6 +50,23 @@
       background-repeat: no-repeat;
       background-position: right 15px center;
       appearance: none;
+    }
+
+    /* Warning state - Yellow background for incomplete intermediate steps */
+    .sidebar-step.warning {
+      background: rgba(255, 193, 7, 0.4) !important;
+      border-left: 4px solid #FFC107;
+      padding-left: 12px;
+    }
+
+    .step-pill.warning {
+      background: rgba(255, 193, 7, 0.4) !important;
+      border-color: #FFC107 !important;
+    }
+
+    .step-number.warning {
+      background: rgba(255, 193, 7, 0.4) !important;
+      border-color: #FFC107 !important;
     }
   </style>
 
@@ -574,7 +589,7 @@
               <!-- Step text -->
               <div class="flex-1 text-center">
                 <span class="text-white text-sm font-medium">
-                  Step 2 of 5
+                  Step 5 of 5
                 </span>
               </div>
               <!-- Next -->
@@ -854,6 +869,38 @@
       });
     }
 
+    // ===== LOGIC MỚI: Kiểm tra xem có thể navigate đến step đích hay không =====
+    function canNavigateToStep(targetStep) {
+      if (targetStep === currentStep) {
+        return { allowed: true };
+      }
+
+      // Nếu quay lại step trước
+      if (targetStep < currentStep) {
+        return { allowed: true, isBackward: true };
+      }
+
+      // Nếu step hiện tại chưa valid
+      if (!validateCurrentStep()) {
+        return { allowed: false, reason: 'current' };
+      }
+
+      // Nếu nhảy qua nhiều step chưa hoàn thành
+      if (targetStep > currentStep + 1) {
+        for (let i = currentStep + 1; i < targetStep; i++) {
+          if (!stepCompleted[i]) {
+            return {
+              allowed: false,
+              reason: 'intermediate',
+              incompleteStep: i
+            };
+          }
+        }
+      }
+
+      return { allowed: true, isBackward: false };
+    }
+
     function updateSteps() {
       // Update form steps
       steps.forEach((step, index) => {
@@ -978,6 +1025,18 @@
 
       stepCompleted[currentStep] = true;
 
+      // Clear warning cho step tiếp theo
+      const nextStepNum = currentStep + 1;
+      if (nextStepNum <= totalSteps) {
+        const nextSidebarStep = document.querySelector(`.sidebar-step[data-step="${nextStepNum}"]`);
+        const nextPill = document.querySelector(`.step-pill[data-step="${nextStepNum}"]`);
+        const nextNumber = document.querySelector(`.step-number[data-step="${nextStepNum}"]`);
+        
+        if (nextSidebarStep) nextSidebarStep.classList.remove('warning');
+        if (nextPill) nextPill.classList.remove('warning');
+        if (nextNumber) nextNumber.classList.remove('warning');
+      }
+
       if (currentStep < totalSteps) {
         currentStep++;
         updateSteps();
@@ -1011,21 +1070,47 @@
       }, 2000);
     }
 
-    // Handle step clicks
+    // ===== LOGIC MỚI: Handle step clicks với validation =====
     function handleStepClick(targetStep) {
       if (targetStep === currentStep) return;
 
-      if (targetStep < currentStep) {
-        currentStep = targetStep;
-        updateSteps();
-        return;
+      const navCheck = canNavigateToStep(targetStep);
+
+      if (!navCheck.allowed) {
+        if (navCheck.reason === 'current') {
+          return; // Chỉ highlight border đỏ
+        } else if (navCheck.reason === 'intermediate') {
+          // Clear tất cả warning trước
+          sidebarSteps.forEach(s => s.classList.remove('warning'));
+          stepPills.forEach(p => p.classList.remove('warning'));
+          stepNumbers.forEach(n => n.classList.remove('warning'));
+
+          // Add warning cho step chưa hoàn thành
+          const warningSidebarStep = document.querySelector(`.sidebar-step[data-step="${navCheck.incompleteStep}"]`);
+          const warningPill = document.querySelector(`.step-pill[data-step="${navCheck.incompleteStep}"]`);
+          const warningNumber = document.querySelector(`.step-number[data-step="${navCheck.incompleteStep}"]`);
+          
+          if (warningSidebarStep) warningSidebarStep.classList.add('warning');
+          if (warningPill) warningPill.classList.add('warning');
+          if (warningNumber) warningNumber.classList.add('warning');
+          
+          return;
+        }
       }
 
-      if (!validateCurrentStep()) {
-        return;
+      if (!navCheck.isBackward) {
+        stepCompleted[currentStep] = true;
       }
 
-      stepCompleted[currentStep] = true;
+      // Clear warning cho step đích
+      const targetSidebarStep = document.querySelector(`.sidebar-step[data-step="${targetStep}"]`);
+      const targetPill = document.querySelector(`.step-pill[data-step="${targetStep}"]`);
+      const targetNumber = document.querySelector(`.step-number[data-step="${targetStep}"]`);
+      
+      if (targetSidebarStep) targetSidebarStep.classList.remove('warning');
+      if (targetPill) targetPill.classList.remove('warning');
+      if (targetNumber) targetNumber.classList.remove('warning');
+
       currentStep = targetStep;
       updateSteps();
     }
