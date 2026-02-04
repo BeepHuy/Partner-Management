@@ -1,10 +1,12 @@
 {
   "name": "affiliate-ui",
   "version": "1.0.0",
-  "description": "",
+  "description": "Affiliate UI with Tailwind CSS",
   "main": "index.js",
   "scripts": {
-    "dev": "tailwindcss -i ./src/tailwind.css -o ./dist/app.css --watch"
+    "dev": "tailwindcss -i ./src/tailwind.css -o ./dist/app.css --watch",
+    "build": "tailwindcss -i ./src/tailwind.css -o ./dist/app.css --minify",
+    "build:watch": "npm run build -- --watch"
   },
   "keywords": [],
   "author": "",

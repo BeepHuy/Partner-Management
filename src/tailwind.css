@@ -2,3 +2,93 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Scrollbar */
+@layer utilities {
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(0, 38, 93, 0.1);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(0, 38, 93, 0.5);
+        border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 38, 93, 0.7);
+    }
+}
+
+/* Form Step Transitions */
+@layer components {
+    .form-step {
+        transition: opacity 0.3s ease;
+    }
+
+    .step-background {
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .progress-fill {
+        transition: width 0.5s ease;
+    }
+}
+
+/* Custom Select Arrow */
+@layer base {
+    select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300265D' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        appearance: none;
+    }
+}
+
+/* Warning States */
+@layer utilities {
+    .sidebar-step.warning {
+        background: rgba(255, 193, 7, 0.4) !important;
+        border-left: 4px solid #FFC107;
+        padding-left: 12px;
+    }
+
+    .step-pill.warning {
+        background: rgba(255, 193, 7, 0.4) !important;
+        border-color: #FFC107 !important;
+    }
+
+    .step-number.warning {
+        background: rgba(255, 193, 7, 0.4) !important;
+        border-color: #FFC107 !important;
+    }
+}
+
+/* Login Dropdown */
+.login-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Toast success nền trắng mờ + chữ đen */
+.notyf__toast--success {
+    background: #ffffff69 !important;
+    color: #000 !important;
+    backdrop-filter: blur(6px);
+    /* optional: nhìn sang hơn */
+}
+
+.notyf__icon--success {
+    background: rgb(61, 199, 99) !important;
+    color: white !important;
+}
+
+/* Ripple khi success */
+.notyf__toast--success .notyf__ripple {
+    background: #ffffff69 !important;
+    backdrop-filter: blur(6px);
+    /* optional: nhìn sang hơn */
+}
