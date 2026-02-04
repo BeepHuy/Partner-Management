@@ -1,61 +1,49 @@
-/**
- * Shared Notyf Toast Notification Configuration
- * Usage: Include this file in your HTML, then use showSuccess() and showError()
- */
 
-// Initialize Notyf instance
+// Khởi tạo Notyf
 const notyf = new Notyf({
   duration: 5000,
-  position: { x: 'right', y: 'center' },
+  position: { x: 'right', y: 'top' },
   dismissible: true,
-  ripple: true,
-  types: [
-    {
-      type: 'success',
-      background: '#4dd0e1',
-      icon: {
-        className: 'fas fa-check-circle',
-        tagName: 'i',
-        color: 'white'
-      }
-    },
-    {
-      type: 'error',
-      background: '#ff4d4f',
-      icon: {
-        className: 'fas fa-times-circle',
-        tagName: 'i',
-        color: 'white'
-      }
-    }
-  ]
+  ripple: true
 });
 
-/**
- * Show success notification
- * @param {string} message - Success message to display
- */
-function showSuccess(message) {
-  notyf.success(message);
-}
+// Helper functions
+const NotifyHelper = {
+  // Thông báo thành công
+  success(message, duration = 5000) {
+    notyf.open({ type: 'success', message, duration });
+  },
 
-/**
- * Show error notification
- * @param {string} message - Error message to display
- */
-function showError(message) {
-  notyf.error(message);
-}
+  // Thông báo lỗi
+  error(message, duration = 5000) {
+    notyf.open({ type: 'error', message, duration });
+  },
 
-/**
- * Show custom notification
- * @param {string} type - Notification type ('success' or 'error')
- * @param {string} message - Message to display
- */
-function showNotification(type, message) {
-  if (type === 'success') {
-    showSuccess(message);
-  } else {
-    showError(message);
+  // Hiển thị nhiều lỗi với delay
+  showErrors(errors, delay = 800) {
+    if (!Array.isArray(errors)) {
+      this.error(errors);
+      return;
+    }
+
+    errors.forEach((error, index) => {
+      setTimeout(() => {
+        const message = typeof error === 'string' 
+          ? error 
+          : error.step 
+            ? `[${error.step}] ${error.message}`
+            : error.message;
+        this.error(message);
+      }, index * delay);
+    });
+  },
+
+  // Đóng tất cả
+  dismissAll() {
+    notyf.dismissAll();
   }
-}
+};
+
+// Export cho global
+window.NotifyHelper = NotifyHelper;
+window.notyf = notyf;

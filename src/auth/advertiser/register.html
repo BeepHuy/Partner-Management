@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - Kim Huy</title>
+  <title>Sign Up - Advertiser</title>
 
   <!-- Compiled Tailwind CSS -->
   <link rel="stylesheet" href="../../../dist/app.css">
@@ -31,17 +31,16 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        <div
-          class="login-dropdown absolute right-0 top-full mt-2 min-w-[160px] bg-white border border-[#00265D] rounded-xl shadow-[0_4px_12px_rgba(0,38,93,0.15)] overflow-hidden z-[100] opacity-0 invisible -translate-y-2 transition-all duration-300 ease-in-out"
+        <div class="login-dropdown absolute right-0 top-full mt-2 min-w-[160px] bg-white border border-[#00265D] rounded-xl shadow-[0_4px_12px_rgba(0,38,93,0.15)] overflow-hidden z-[100] opacity-0 invisible -translate-y-2 transition-all duration-300 ease-in-out"
           id="loginDropdown">
           <div
             class="px-5 py-3 text-[#00265D] font-semibold cursor-pointer border-b border-[#E9F2FF] transition-all duration-200 hover:bg-[#E9F2FF] hover:scale-[1.05] last:border-b-0"
-            onclick="location.href='../advertiser/login.html'">
+            onclick="location.href='login.html'">
             Advertiser
           </div>
           <div
             class="px-5 py-3 text-[#00265D] font-semibold cursor-pointer border-b border-[#E9F2FF] transition-all duration-200 hover:bg-[#E9F2FF] hover:scale-[1.05] last:border-b-0"
-            onclick="location.href='login.html'">
+            onclick="location.href='../affiliate/login.html'">
             Publisher
           </div>
         </div>
@@ -51,54 +50,38 @@
     <!-- Progress Section (Tablet/Mobile) -->
     <div class="hidden lg:hidden px-5 py-4 border-b-2 border-primary bg-white" id="progressSection">
       <div class="flex justify-between items-center mb-3">
-        <span class="text-black text-sm font-medium">Step <span id="currentStepText">1</span> of 5</span>
-        <span class="text-black text-sm font-medium" id="currentStepName">Account detail</span>
+        <span class="text-black text-sm font-medium">Step <span id="currentStepText">1</span> of 4</span>
+        <span class="text-black text-sm font-medium" id="currentStepName">General Information</span>
       </div>
       <div class="w-full h-1.5 bg-inputBg rounded-full overflow-hidden mb-4">
-        <div class="h-full bg-primary rounded-full progress-fill" id="progressFill" style="width: 20%"></div>
+        <div class="h-full bg-primary rounded-full progress-fill" id="progressFill" style="width: 25%"></div>
       </div>
 
       <!-- Step Pills (Tablet) -->
       <div class="flex justify-center flex-wrap gap-2" id="stepPills">
-        <div
-          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-primary text-white  rounded-full font-semibold text-sm cursor-pointer transition-all hover:opacity-80"
+        <div class="step-pill flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-full font-semibold text-sm cursor-pointer transition-all hover:opacity-80"
           data-step="1">
-          <div
-            class="pill-indicator w-5 h-5 rounded-full bg-white text-primary flex items-center justify-center text-xs">
+          <div class="pill-indicator w-5 h-5 rounded-full bg-white text-primary flex items-center justify-center text-xs">
             1</div>
-          <span class="pill-text">Account</span>
+          <span class="pill-text">General</span>
         </div>
-        <div
-          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
+        <div class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
           data-step="2">
-          <div
-            class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
+          <div class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
             2</div>
-          <span class="pill-text">User</span>
+          <span class="pill-text">Company</span>
         </div>
-        <div
-          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
+        <div class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
           data-step="3">
-          <div
-            class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
+          <div class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
             3</div>
-          <span class="pill-text">Traffic</span>
+          <span class="pill-text">Billing</span>
         </div>
-        <div
-          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
+        <div class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
           data-step="4">
-          <div
-            class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
+          <div class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
             4</div>
-          <span class="pill-text">Additional</span>
-        </div>
-        <div
-          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
-          data-step="5">
-          <div
-            class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
-            5</div>
-          <span class="pill-text">Terms</span>
+          <span class="pill-text">Campaign</span>
         </div>
       </div>
 
@@ -116,9 +99,6 @@
         <div
           class="step-number w-9 h-9 rounded-full bg-transparent border border-primary/30 text-primary font-semibold text-sm flex items-center justify-center cursor-pointer transition-all"
           data-step="4">4</div>
-        <div
-          class="step-number w-9 h-9 rounded-full bg-transparent border border-primary/30 text-primary font-semibold text-sm flex items-center justify-center cursor-pointer transition-all"
-          data-step="5">5</div>
       </div>
     </div>
 
@@ -126,19 +106,16 @@
     <div class="flex min-h-[600px] max-h-[calc(100dvh-200px)]">
 
       <!-- Sidebar (Desktop) -->
-      <div
-        class="hidden lg:block w-auto min-w-[220px] max-w-[280px] pt-24 px-5 pb-5 border-r-2 border-primary relative flex-shrink-0 bg-white">
+      <div class="hidden lg:block w-auto min-w-[220px] max-w-[280px] pt-24 px-5 pb-5 border-r-2 border-primary relative flex-shrink-0 bg-white">
         <div class="relative -top-[50px] -right-[15%] text-[32px] font-medium text-primary font-domine">
-
-          Publisher
+            Advertiser
         </div>
         <div class="step-background absolute left-0 top-0 w-full h-10 bg-[#00265D] border-l-4 border-primary"
           id="stepBackground"></div>
 
-        <div
-          class="sidebar-step relative py-2.5 px-3 text-base text-white font-semibold cursor-pointer mb-9 whitespace-nowrap transition-all hover:opacity-70 z-10"
+        <div class="sidebar-step relative py-2.5 px-3 text-base text-white font-semibold cursor-pointer mb-9 whitespace-nowrap transition-all hover:opacity-70 z-10"
           data-step="1">
-          <span>Account detail</span>
+          <span>General Information</span>
           <div
             class="step-indicator absolute -right-7 top-1/2 -translate-y-[60%] w-4 h-4 rounded-full bg-bgictich border border-white shadow-[0_0_10px_rgba(0,38,93,0.3)] z-20 flex items-center justify-center text-white text-[10px] font-bold">
             ✓
@@ -147,7 +124,7 @@
         <div
           class="sidebar-step relative py-2.5 px-3 text-base text-black font-semibold cursor-pointer mb-9 whitespace-nowrap transition-all hover:text-primary z-10"
           data-step="2">
-          <span>User detail</span>
+          <span>Company & Online Presence</span>
           <div
             class="step-indicator absolute -right-7 top-1/2 -translate-y-[60%] w-4 h-4 rounded-full bg-primary border border-white shadow-[0_0_10px_rgba(0,38,93,0.3)] z-20 flex items-center justify-center text-white text-[10px] font-bold">
             ✓
@@ -156,7 +133,7 @@
         <div
           class="sidebar-step relative py-2.5 px-3 text-base text-black font-semibold cursor-pointer mb-9 whitespace-nowrap transition-all hover:text-primary z-10"
           data-step="3">
-          <span>Traffic Detail</span>
+          <span>Billing & Communication</span>
           <div
             class="step-indicator absolute -right-7 top-1/2 -translate-y-[60%] w-4 h-4 rounded-full bg-primary border border-white shadow-[0_0_10px_rgba(0,38,93,0.3)] z-20 flex items-center justify-center text-white text-[10px] font-bold">
             ✓
@@ -165,16 +142,7 @@
         <div
           class="sidebar-step relative py-2.5 px-3 text-base text-black font-semibold cursor-pointer mb-9 whitespace-nowrap transition-all hover:text-primary z-10"
           data-step="4">
-          <span>Additional Information</span>
-          <div
-            class="step-indicator absolute -right-7 top-1/2 -translate-y-[60%] w-4 h-4 rounded-full bg-primary border border-white shadow-[0_0_10px_rgba(0,38,93,0.3)] z-20 flex items-center justify-center text-white text-[10px] font-bold">
-            ✓
-          </div>
-        </div>
-        <div
-          class="sidebar-step relative py-2.5 px-3 text-base text-black font-semibold cursor-pointer mb-9 whitespace-nowrap transition-all hover:text-primary z-10"
-          data-step="5">
-          <span>Terms and Conditions</span>
+          <span>Campaign Details & Terms</span>
           <div
             class="step-indicator absolute -right-7 top-1/2 -translate-y-[60%] w-4 h-4 rounded-full bg-primary border border-white shadow-[0_0_10px_rgba(0,38,93,0.3)] z-20 flex items-center justify-center text-white text-[10px] font-bold">
             ✓
@@ -186,23 +154,98 @@
       <div class="flex-1 p-6 lg:p-10 overflow-y-auto custom-scrollbar bg-white">
         <div class="relative w-full h-full" id="formStepsContainer">
 
-          <!-- Step 1: Account Detail -->
+          <!-- Step 1: General Information -->
           <div class="form-step opacity-100 pointer-events-auto" id="step1" data-step="1">
-            <h2 class="text-xl text-black font-semibold mb-2">Account detail</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
-              below.</p>
+            <h2 class="text-xl text-black font-semibold mb-2">General Information</h2>
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">Basic information of the registered representative. Used to verify the account and contact you during the review process.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Company Name <span
+                <label class="block text-base font-medium text-black mb-2">First Name <span
                     class="text-red-500">*</span></label>
-                <input type="text" name="companyName" placeholder="Enter company name" data-required="true"
+                <input type="text" name="firstName" placeholder="" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
               </div>
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Company Website <span
+                <label class="block text-base font-medium text-black mb-2">Last Name <span
                     class="text-red-500">*</span></label>
-                <input type="url" name="companyWebsite" placeholder="https://" data-required="true"
+                <input type="text" name="lastName" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Email <span
+                    class="text-red-500">*</span></label>
+                <input type="email" name="email" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Email Confirmation <span
+                    class="text-red-500">*</span></label>
+                <input type="email" name="emailConfirm" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Phone Number <span
+                    class="text-red-500">*</span></label>
+                <input type="tel" name="phone" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+              <div class="form-group"></div>
+            </div>
+
+            <div class="flex items-center justify-between gap-3 mt-6 pt-5 border-t border-gray-200">
+              <div class="flex-1 text-center">
+                <span class="text-black text-sm font-medium">
+                  Step 1 of 4
+                </span>
+              </div>
+              <div class="flex-shrink-0">
+                <button
+                  class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all"
+                  onclick="nextStep()">
+                  Next →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Company & Online Presence -->
+          <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step2" data-step="2">
+            <h2 class="text-xl text-black font-semibold mb-2">Company & Online Presence</h2>
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">Provide information about the business, website, or platform running the campaign to assess the credibility and content of the offer.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Company/Individual/Website Name <span
+                    class="text-red-500">*</span></label>
+                <input type="text" name="companyName" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Website / Social Media <span
+                    class="text-red-500">*</span></label>
+                <input type="url" name="website" placeholder="https://" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Example Offer Landing Page / Product Page <span
+                    class="text-red-500">*</span></label>
+                <input type="url" name="landingPage" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">ZIP / Postal Code <span
+                    class="text-red-500">*</span></label>
+                <input type="text" name="zipCode" placeholder="" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
               </div>
             </div>
@@ -211,13 +254,12 @@
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Address <span
                     class="text-red-500">*</span></label>
-                <input type="text" name="address" placeholder="Enter address" data-required="true"
+                <input type="text" name="address" placeholder="" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
               </div>
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">City <span
-                    class="text-red-500">*</span></label>
-                <input type="text" name="city" placeholder="Enter city" data-required="true"
+                <label class="block text-base font-medium text-black mb-2">Apartment, suite, etc.</label>
+                <input type="text" name="apartment" placeholder=""
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
               </div>
             </div>
@@ -235,160 +277,88 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">State/Region <span
+                <label class="block text-base font-medium text-black mb-2">City <span
                     class="text-red-500">*</span></label>
-                <select name="state" data-required="true"
+                <input type="text" name="city" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between gap-3 mt-6 pt-5 border-t border-gray-200">
+              <div class="flex-shrink-0">
+                <button
+                  class="bg-gray-200 text-primary border border-gray-300 px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white/30 transition-all"
+                  onclick="prevStep()">
+                  ← Prive
+                </button>
+              </div>
+              <div class="flex-1 text-center">
+                <span class="text-black text-sm font-medium">
+                  Step 2 of 4
+                </span>
+              </div>
+              <div class="flex-shrink-0">
+                <button
+                  class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all"
+                  onclick="nextStep()">
+                  Next →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Billing & Communication -->
+          <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step3" data-step="3">
+            <h2 class="text-xl text-black font-semibold mb-2">Billing & Communication</h2>
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">Details about the campaign you wish to run on the system and the required terms of cooperation.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Billing Contact Name <span
+                    class="text-red-500">*</span></label>
+                <input type="text" name="billingName" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Billing Contact Email <span
+                    class="text-red-500">*</span></label>
+                <input type="email" name="billingEmail" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Billing Contact Phone <span
+                    class="text-red-500">*</span></label>
+                <input type="tel" name="billingPhone" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">EIN <span
+                    class="text-red-500">*</span></label>
+                <input type="text" name="ein" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Message Platform <span
+                    class="text-red-500">*</span></label>
+                <select name="messagePlatform" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all cursor-pointer">
-                  <option value="" class="bg-white text-black">Select region</option>
-                  <option value="hcm" class="bg-white text-black">Ho Chi Minh</option>
-                  <option value="hn" class="bg-white text-black">Ha Noi</option>
-                  <option value="dn" class="bg-white text-black">Da Nang</option>
+                  <option value="" class="bg-white text-black">Select platform</option>
+                  <option value="slack" class="bg-white text-black">Slack</option>
+                  <option value="telegram" class="bg-white text-black">Telegram</option>
+                  <option value="skype" class="bg-white text-black">Skype</option>
+                  <option value="other" class="bg-white text-black">Other</option>
                 </select>
               </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">ZIP/Postal Code <span
+                <label class="block text-base font-medium text-black mb-2">Message Platform Username <span
                     class="text-red-500">*</span></label>
-                <input type="text" name="zipCode" placeholder="Enter postal code" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-              <div class="form-group"></div>
-            </div>
-
-            <div class="flex items-center justify-between gap-3 mt-6 pt-5 border-t border-gray-200">
-              <div class="flex-1 text-center">
-                <span class="text-black text-sm font-medium">
-                  Step 1 of 5
-                </span>
-              </div>
-              <div class="flex-shrink-0">
-                <button
-                  class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all"
-                  onclick="nextStep()">
-                  Next →
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 2: User Detail -->
-          <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step2" data-step="2">
-            <h2 class="text-xl text-black font-semibold mb-2">User detail</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
-              below. <span class="text-red-500">*</span> - required field</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">First Name <span
-                    class="text-red-500">*</span></label>
-                <input type="text" name="firstName" placeholder="Enter first name" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Last Name <span
-                    class="text-red-500">*</span></label>
-                <input type="text" name="lastName" placeholder="Enter last name" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Email <span
-                    class="text-red-500">*</span></label>
-                <input type="email" name="email" placeholder="Enter email" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Email Confirmation <span
-                    class="text-red-500">*</span></label>
-                <input type="email" name="emailConfirm" placeholder="Confirm email" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Password <span
-                    class="text-red-500">*</span></label>
-                <input type="password" name="password" placeholder="Enter password" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Confirm Password <span
-                    class="text-red-500">*</span></label>
-                <input type="password" name="passwordConfirm" placeholder="Confirm password" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Phone Number <span
-                    class="text-red-500">*</span></label>
-                <input type="tel" name="phone" placeholder="Enter phone number" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-              <div class="form-group"></div>
-            </div>
-
-            <div class="flex items-center justify-between gap-3 mt-6 pt-5 border-t border-gray-200">
-              <div class="flex-shrink-0">
-                <button
-                  class="bg-gray-200 text-primary border border-gray-300 px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white/30 transition-all"
-                  onclick="prevStep()">
-                  ← Prev
-                </button>
-              </div>
-              <div class="flex-1 text-center">
-                <span class="text-black text-sm font-medium">
-                  Step 2 of 5
-                </span>
-              </div>
-              <div class="flex-shrink-0">
-                <button
-                  class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all"
-                  onclick="nextStep()">
-                  Next →
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 3: Traffic Detail -->
-          <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step3" data-step="3">
-            <h2 class="text-xl text-black font-semibold mb-2">Traffic Detail</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
-              below. <span class="text-red-500">*</span> - required field</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Promotional Method <span
-                    class="text-red-500">*</span></label>
-                <input type="text" name="promotionalMethod" placeholder="Enter promotional method" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Countries <span
-                    class="text-red-500">*</span></label>
-                <input type="text" name="countries" placeholder="Enter countries" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Property Type <span
-                    class="text-red-500">*</span></label>
-                <input type="text" name="propertyType" placeholder="Enter property type" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">URL <span
-                    class="text-red-500">*</span></label>
-                <input type="url" name="url" placeholder="Enter URL" data-required="true"
+                <input type="text" name="messagePlatformUsername" placeholder="" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
               </div>
             </div>
@@ -398,12 +368,12 @@
                 <button
                   class="bg-gray-200 text-primary border border-gray-300 px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white/30 transition-all"
                   onclick="prevStep()">
-                  ← Prev
+                  ← Prive
                 </button>
               </div>
               <div class="flex-1 text-center">
                 <span class="text-black text-sm font-medium">
-                  Step 3 of 5
+                  Step 3 of 4
                 </span>
               </div>
               <div class="flex-shrink-0">
@@ -416,105 +386,71 @@
             </div>
           </div>
 
-          <!-- Step 4: Additional Information -->
+          <!-- Step 4: Campaign Details & Terms -->
           <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step4" data-step="4">
-            <h2 class="text-xl text-black font-semibold mb-2">Additional Information</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
-              below. <span class="text-red-500">*</span> - required field</p>
+            <h2 class="text-xl text-black font-semibold mb-2">Campaign Details & Terms</h2>
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">Details about the campaign you wish to run on the system and the required terms of cooperation.</p>
 
             <div class="grid grid-cols-1 gap-5 mb-4">
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Referral Code</label>
-                <input type="text" name="referralCode" placeholder="Enter referral code (optional)"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Marketing Channels <span
+                <label class="block text-base font-medium text-black mb-2">Are you looking for leads or sales? <span
                     class="text-red-500">*</span></label>
-                <input type="text" name="marketingChannels" placeholder="Enter marketing channels" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
-              </div>
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Affiliate Classification <span
-                    class="text-red-500">*</span></label>
-                <input type="text" name="affiliateClassification" placeholder="Enter classification"
-                  data-required="true"
+                <input type="text" name="campaignType" placeholder="" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
               </div>
             </div>
 
             <div class="grid grid-cols-1 gap-5 mb-4">
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Marketing Channels Description <span
+                <label class="block text-base font-medium text-black mb-2">What is the payout you are offering per conversion? <span
                     class="text-red-500">*</span></label>
-                <textarea name="marketingChannelsDesc" placeholder="Enter marketing channels details"
-                  data-required="true"
+                <input type="text" name="payout" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">What countries are valid for your campaign? <span
+                    class="text-red-500">*</span></label>
+                <input type="text" name="validCountries" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">What payment terms do you offer? <span
+                    class="text-red-500">*</span></label>
+                <input type="text" name="paymentTerms" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">What channels of traffic are open for your campaign? <span
+                    class="text-red-500">*</span></label>
+                <input type="text" name="trafficChannels" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5 mb-4">
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Briefly describe your product or service? <span
+                    class="text-red-500">*</span></label>
+                <textarea name="productDescription" placeholder="" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400 resize-y min-h-[70px]"></textarea>
               </div>
             </div>
 
             <div class="grid grid-cols-1 gap-5 mb-4">
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Describe the sites and methods used to
-                  advertise <span class="text-red-500">*</span></label>
-                <textarea name="advertiseMethods" placeholder="Describe your advertising methods" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400 resize-y min-h-[70px]"></textarea>
-              </div>
-            </div>
-
-            <div class="flex items-center justify-between gap-3 mt-6 pt-5 pb-3 border-t border-gray-200">
-              <div class="flex-shrink-0">
-                <button
-                  class="bg-gray-200 text-primary border border-gray-300 px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white/30 transition-all"
-                  onclick="prevStep()">
-                  ← Prev
-                </button>
-              </div>
-              <div class="flex-1 text-center">
-                <span class="text-black text-sm font-medium">
-                  Step 4 of 5
-                </span>
-              </div>
-              <div class="flex-shrink-0">
-                <button
-                  class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all"
-                  onclick="nextStep()">
-                  Next →
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 5: Terms and Conditions -->
-          <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step5" data-step="5">
-            <h2 class="text-xl text-black font-semibold mb-2">Terms and Conditions</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
-              below. <span class="text-red-500">*</span> - required field</p>
-
-            <div class="grid grid-cols-1 gap-5 mb-4">
-              <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Terms of Service</label>
-                <div
-                  class="bg-[rgba(233,242,255,0.4)] border border-primary rounded-md p-5 max-h-[220px] overflow-y-auto custom-scrollbar text-black text-sm leading-relaxed">
-                  <p class="mb-3">This Service Agreement ("Agreement") is established between Ray Advertising LLC
-                    (referred to as the "Company") and the Lead Provider specified in the Insertion Order, which is
-                    expressly referenced and incorporated into this Agreement. Each entity may individually be referred
-                    to as a "Party" or collectively as the "Parties."</p>
-
-                  <h4 class="text-primary font-semibold mb-2">Recitals:</h4>
-                  <p class="mb-3">Acknowledging the Insertion Order: The terms outlined in the "Insertion Order" are
-                    tailored specifically to govern the relationship between the Company and the Lead Provider. These
-                    terms shall take precedence over and override any conflicting provisions within this Agreement.</p>
-
-                  <h4 class="text-primary font-semibold mb-2">Scope of Lead Provider's Engagement:</h4>
-                  <p class="mb-3">The Lead Provider agrees to execute a range of advertising and marketing campaigns on
-                    behalf of the Company. The specifications and operational details of these campaigns will be defined
-                    in order form, each of which will automatically be integrated into and considered an integral
-                    component of this Agreement.</p>
-                </div>
+                <label class="block text-base font-medium text-black mb-2">Ray Advertising Terms <span
+                    class="text-red-500">*</span></label>
+                <textarea name="rayTerms" placeholder="" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400 resize-y min-h-[120px]"></textarea>
               </div>
             </div>
 
@@ -526,24 +462,24 @@
               </label>
             </div>
 
-            <div class="flex items-center justify-between gap-3 mt-6 pt-5 border-t border-gray-200">
+            <div class="flex items-center justify-between gap-3 mt-6 pt-5 pb-3 border-t border-gray-200">
               <div class="flex-shrink-0">
                 <button
                   class="bg-gray-200 text-primary border border-gray-300 px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white/30 transition-all"
                   onclick="prevStep()">
-                  ← Prev
+                  ← Prive
                 </button>
               </div>
               <div class="flex-1 text-center">
                 <span class="text-black text-sm font-medium">
-                  Step 5 of 5
+                  Step 4 of 4
                 </span>
               </div>
               <div class="flex-shrink-0">
                 <button
                   class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all"
                   onclick="submitForm()">
-                  Sign Up
+                  SIGNUP
                 </button>
               </div>
             </div>
@@ -558,7 +494,7 @@
 
   <!-- Main JavaScript -->
   <script src="../javascript/notyf-config.js"></script>
-  <script src="../javascript/register.js"></script>
+  <script src="../javascript/register-adv.js"></script>
 
 </body>
 

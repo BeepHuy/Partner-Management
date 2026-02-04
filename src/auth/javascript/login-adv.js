@@ -1,4 +1,3 @@
-
 const loginForm = document.getElementById('loginForm');
 const emailInput = document.getElementById('emailInput');
 const passwordInput = document.getElementById('passwordInput');
@@ -42,29 +41,29 @@ loginForm.addEventListener('submit', (e) => {
   // Validate email
   if (!email) {
     emailInput.classList.add(...ERROR_CLASS);
-    errors.push('Vui lòng nhập email');
+    errors.push('Please enter your email');
   } else if (!isValidEmail(email)) {
     emailInput.classList.add(...ERROR_CLASS);
-    errors.push('Email không đúng định dạng');
+    errors.push('Email format is invalid');
   }
 
   // Validate password
   if (!password) {
     passwordInput.classList.add(...ERROR_CLASS);
-    errors.push('Vui lòng nhập mật khẩu');
+    errors.push('Please enter your password');
   } else if (password.length < 6) {
     passwordInput.classList.add(...ERROR_CLASS);
-    errors.push('Mật khẩu phải có ít nhất 6 ký tự');
+    errors.push('Password must be at least 6 characters');
   }
 
   // Show errors or success
   if (errors.length > 0) {
     NotifyHelper.showErrors(errors, 500);
   } else {
-    NotifyHelper.success('Đăng nhập thành công! Chào mừng bạn quay trở lại.');
+    NotifyHelper.success('Login successful! Welcome back to your advertiser dashboard.');
     setTimeout(() => {
       console.log('Login success:', { email, password });
-      // window.location.href = '/dashboard';
+      // window.location.href = '/advertiser/dashboard';
     }, 1500);
   }
 });
