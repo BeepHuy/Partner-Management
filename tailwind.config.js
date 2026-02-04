@@ -9,12 +9,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#00265D',
-        accent: '#4dd0e1',
-        bgLight: '#D9E9FF',
-        inputBg: '#E9F2FF',
-        inputtb: '#BCBFC8',
-        bgictich: '#04EEFF',
+        primary: "#00265D",
+        accent: "#4dd0e1",
+        bgLight: "#D9E9FF",
+        inputBg: "#E9F2FF",
+        inputtb: "#BCBFC8",
+        bgictich: "#04EEFF",
+      },
+      backgroundImage: {
+        "custom-gradient":
+          "linear-gradient(-54deg, #00265D 0%, #FFFFFF 50%, #00265D 100%)",
+      },
+      fontFamily: {
+        domine: ["Domine", "serif"],
       },
     },
   },

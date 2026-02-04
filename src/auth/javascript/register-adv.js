@@ -1,5 +1,3 @@
-
-
 // Login Dropdown Logic
 const loginBtn = document.getElementById("loginBtn");
 const loginDropdown = document.getElementById("loginDropdown");
@@ -27,14 +25,13 @@ document.addEventListener("click", (e) => {
 
 // Form Step Management
 let currentStep = 1;
-const totalSteps = 5;
+const totalSteps = 4;
 
 const stepNames = {
-  1: "Account detail",
-  2: "User detail",
-  3: "Traffic Detail",
-  4: "Additional Information",
-  5: "Terms and Conditions",
+  1: "General Information",
+  2: "Company & Online Presence",
+  3: "Billing & Communication",
+  4: "Campaign Details & Terms",
 };
 
 const stepCompleted = {
@@ -42,7 +39,6 @@ const stepCompleted = {
   2: false,
   3: false,
   4: false,
-  5: false,
 };
 
 // DOM Elements
@@ -150,7 +146,7 @@ function validateAllStepsForSubmit() {
           );
           errorMessage = {
             field: fieldName,
-            message: `Bạn chưa đồng ý với điều khoản`,
+            message: `You must agree to the terms`,
             step: stepName,
             stepNum: stepNum,
           };
@@ -162,7 +158,7 @@ function validateAllStepsForSubmit() {
         );
         errorMessage = {
           field: fieldName,
-          message: `${fieldName} không được để trống`,
+          message: `${fieldName} is required`,
           step: stepName,
           stepNum: stepNum,
         };
@@ -177,15 +173,15 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} không đúng định dạng email`,
+              message: `${fieldName} must be a valid email`,
               step: stepName,
               stepNum: stepNum,
             };
           }
         } else if (
           input.type === "url" ||
-          input.name === "companyWebsite" ||
-          input.name === "url"
+          input.name === "website" ||
+          input.name === "landingPage"
         ) {
           if (!value.startsWith("http://") && !value.startsWith("https://")) {
             input.classList.add(
@@ -194,12 +190,12 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} phải bắt đầu với http:// hoặc https://`,
+              message: `${fieldName} must start with http:// or https://`,
               step: stepName,
               stepNum: stepNum,
             };
           }
-        } else if (input.type === "tel" || input.name === "phone") {
+        } else if (input.type === "tel" || input.name === "phone" || input.name === "billingPhone") {
           const phoneRegex = /^[0-9+\-\s()]+$/;
           if (!phoneRegex.test(value)) {
             input.classList.add(
@@ -208,7 +204,7 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} chỉ được chứa số và ký tự +, -, (, )`,
+              message: `${fieldName} can only contain numbers and +, -, (, )`,
               step: stepName,
               stepNum: stepNum,
             };
@@ -219,39 +215,10 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} phải có ít nhất 10 chữ số`,
+              message: `${fieldName} must have at least 10 digits`,
               step: stepName,
               stepNum: stepNum,
             };
-          }
-        } else if (input.type === "password") {
-          if (value.length < 6) {
-            input.classList.add(
-              "border-red-500",
-              "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-            );
-            errorMessage = {
-              field: fieldName,
-              message: `${fieldName} phải có ít nhất 6 ký tự`,
-              step: stepName,
-              stepNum: stepNum,
-            };
-          }
-          if (input.name === "passwordConfirm") {
-            const password =
-              stepElement.querySelector('[name="password"]').value;
-            if (value !== password) {
-              input.classList.add(
-                "border-red-500",
-                "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-              );
-              errorMessage = {
-                field: fieldName,
-                message: `${fieldName} không khớp với mật khẩu`,
-                step: stepName,
-                stepNum: stepNum,
-              };
-            }
           }
         } else if (input.name === "emailConfirm") {
           const email = stepElement.querySelector('[name="email"]').value;
@@ -262,7 +229,7 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} không khớp với email`,
+              message: `${fieldName} does not match email`,
               step: stepName,
               stepNum: stepNum,
             };
@@ -276,7 +243,7 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} chỉ được chứa số (4-10 ký tự)`,
+              message: `${fieldName} can only contain numbers (4-10 characters)`,
               step: stepName,
               stepNum: stepNum,
             };
@@ -402,7 +369,7 @@ function updateSteps() {
     const indicator = pill.querySelector(".pill-indicator");
     const text = pill.querySelector(".pill-text");
 
-    text.classList.remove("text-white", "text-primary",);
+    text.classList.remove("text-white", "text-primary");
 
     if (stepNum === currentStep) {
       pill.classList.remove("bg-inputtb", "border-primary/30");
@@ -412,8 +379,8 @@ function updateSteps() {
       indicator.classList.add("bg-white", "text-primary");
       indicator.textContent = stepNum;
     } else if (stepCompleted[stepNum]) {
-      pill.classList.remove("bg-primary",);
-      pill.classList.add("bg-inputtb",);
+      pill.classList.remove("bg-primary");
+      pill.classList.add("bg-inputtb");
       indicator.classList.remove("bg-inputBg");
       indicator.classList.add("bg-bgictich", "text-white");
       indicator.textContent = "✓";
@@ -518,7 +485,7 @@ function submitForm() {
   }
 
   stepCompleted[currentStep] = true;
-  NotifyHelper.success("Đăng ký thành công! Cảm ơn bạn đã đăng ký với Ray Advertising.");
+  NotifyHelper.success("Registration successful! Thank you for signing up with Ray Advertising.");
 
   setTimeout(() => {
     console.log("Form submitted successfully");
