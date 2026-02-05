@@ -30,11 +30,11 @@ let currentStep = 1;
 const totalSteps = 5;
 
 const stepNames = {
-  1: "Account detail",
-  2: "User detail",
-  3: "Traffic Detail",
-  4: "Additional Information",
-  5: "Terms and Conditions",
+  1: "Account",
+  2: "User",
+  3: "Traffic",
+  4: "Additional",
+  5: "Terms",
 };
 
 const stepCompleted = {
@@ -150,7 +150,7 @@ function validateAllStepsForSubmit() {
           );
           errorMessage = {
             field: fieldName,
-            message: `Bạn chưa đồng ý với điều khoản`,
+            message: `You have not agreed to the terms.`,
             step: stepName,
             stepNum: stepNum,
           };
@@ -162,12 +162,11 @@ function validateAllStepsForSubmit() {
         );
         errorMessage = {
           field: fieldName,
-          message: `${fieldName} không được để trống`,
+          message: `${fieldName} This field is required.`,
           step: stepName,
           stepNum: stepNum,
         };
       } else {
-        // Additional validations
         if (input.type === "email") {
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (!emailRegex.test(value)) {
@@ -177,7 +176,7 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} không đúng định dạng email`,
+              message: `${fieldName} Invalid email format.`,
               step: stepName,
               stepNum: stepNum,
             };
@@ -194,7 +193,7 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} phải bắt đầu với http:// hoặc https://`,
+              message: `${fieldName} Must start with http:// or https://`,
               step: stepName,
               stepNum: stepNum,
             };
@@ -208,7 +207,7 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} chỉ được chứa số và ký tự +, -, (, )`,
+              message: `${fieldName} This field may contain only numbers and +, -, (, ).`,
               step: stepName,
               stepNum: stepNum,
             };
@@ -219,7 +218,7 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} phải có ít nhất 10 chữ số`,
+              message: `${fieldName} Must contain at least 10 digits.`,
               step: stepName,
               stepNum: stepNum,
             };
@@ -232,7 +231,7 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} phải có ít nhất 6 ký tự`,
+              message: `${fieldName} Must be at least 6 characters long.`,
               step: stepName,
               stepNum: stepNum,
             };
@@ -247,7 +246,7 @@ function validateAllStepsForSubmit() {
               );
               errorMessage = {
                 field: fieldName,
-                message: `${fieldName} không khớp với mật khẩu`,
+                message: `${fieldName} Passwords do not match.`,
                 step: stepName,
                 stepNum: stepNum,
               };
@@ -262,7 +261,7 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} không khớp với email`,
+              message: `${fieldName} Email addresses do not match.`,
               step: stepName,
               stepNum: stepNum,
             };
@@ -276,7 +275,7 @@ function validateAllStepsForSubmit() {
             );
             errorMessage = {
               field: fieldName,
-              message: `${fieldName} chỉ được chứa số (4-10 ký tự)`,
+              message: `${fieldName} Only numbers are allowed (4–10 characters).`,
               step: stepName,
               stepNum: stepNum,
             };
@@ -518,7 +517,7 @@ function submitForm() {
   }
 
   stepCompleted[currentStep] = true;
-  NotifyHelper.success("Đăng ký thành công! Cảm ơn bạn đã đăng ký với Ray Advertising.");
+  NotifyHelper.success("Registration successful! Thank you for registering with Kyren Affiliate.");
 
   setTimeout(() => {
     console.log("Form submitted successfully");

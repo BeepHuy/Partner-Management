@@ -28,10 +28,10 @@ let currentStep = 1;
 const totalSteps = 4;
 
 const stepNames = {
-  1: "General Information",
-  2: "Company & Online Presence",
-  3: "Billing & Communication",
-  4: "Campaign Details & Terms",
+  1: "General",
+  2: "Company",
+  3: "Billing",
+  4: "Campaign",
 };
 
 const stepCompleted = {
@@ -195,7 +195,11 @@ function validateAllStepsForSubmit() {
               stepNum: stepNum,
             };
           }
-        } else if (input.type === "tel" || input.name === "phone" || input.name === "billingPhone") {
+        } else if (
+          input.type === "tel" ||
+          input.name === "phone" ||
+          input.name === "billingPhone"
+        ) {
           const phoneRegex = /^[0-9+\-\s()]+$/;
           if (!phoneRegex.test(value)) {
             input.classList.add(
@@ -233,6 +237,35 @@ function validateAllStepsForSubmit() {
               step: stepName,
               stepNum: stepNum,
             };
+          }
+        } else if (input.type === "password") {
+          if (value.length < 6) {
+            input.classList.add(
+              "border-red-500",
+              "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
+            );
+            errorMessage = {
+              field: fieldName,
+              message: `${fieldName} Must be at least 6 characters long.`,
+              step: stepName,
+              stepNum: stepNum,
+            };
+          }
+          if (input.name === "passwordConfirm") {
+            const password =
+              stepElement.querySelector('[name="password"]').value;
+            if (value !== password) {
+              input.classList.add(
+                "border-red-500",
+                "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
+              );
+              errorMessage = {
+                field: fieldName,
+                message: `${fieldName} Passwords do not match.`,
+                step: stepName,
+                stepNum: stepNum,
+              };
+            }
           }
         } else if (input.name === "zipCode") {
           const zipRegex = /^[0-9]{4,10}$/;
@@ -485,7 +518,9 @@ function submitForm() {
   }
 
   stepCompleted[currentStep] = true;
-  NotifyHelper.success("Registration successful! Thank you for signing up with Ray Advertising.");
+  NotifyHelper.success(
+    "Registration successful! Thank you for registering with Kyren Advertiser.",
+  );
 
   setTimeout(() => {
     console.log("Form submitted successfully");

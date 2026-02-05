@@ -5,19 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Kim Huy</title>
-
-  <!-- Compiled Tailwind CSS -->
   <link rel="stylesheet" href="../../../dist/app.css">
-
-  <!-- Notyf CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 </head>
 
 <body class="bg-custom-gradient min-h-screen flex items-center justify-center p-4">
 
   <div class="bg-white w-full max-w-[1100px] rounded-xl shadow-2xl overflow-hidden">
-
-    <!-- Header -->
     <div class="h-20 flex justify-between items-center px-10 border-b-2 border-primary bg-primary">
       <div class="flex items-center max-w-[260px] h-full">
         <img src="../../assets/logo-images/logo 1.png" alt="Logo" class="max-h-[60px] w-auto object-contain">
@@ -48,7 +42,7 @@
       </div>
     </div>
 
-    <!-- Progress Section (Tablet/Mobile) -->
+    <!-- (Tablet/Mobile) -->
     <div class="hidden lg:hidden px-5 py-4 border-b-2 border-primary bg-white" id="progressSection">
       <div class="flex justify-between items-center mb-3">
         <span class="text-black text-sm font-medium">Step <span id="currentStepText">1</span> of 5</span>
@@ -58,7 +52,7 @@
         <div class="h-full bg-primary rounded-full progress-fill" id="progressFill" style="width: 20%"></div>
       </div>
 
-      <!-- Step Pills (Tablet) -->
+      <!-- (Tablet) -->
       <div class="flex justify-center flex-wrap gap-2" id="stepPills">
         <div
           class="step-pill flex items-center gap-1.5 px-4 py-2 bg-primary text-white  rounded-full font-semibold text-sm cursor-pointer transition-all hover:opacity-80"
@@ -102,7 +96,7 @@
         </div>
       </div>
 
-      <!-- Step Numbers (Mobile) -->
+      <!-- (Mobile) -->
       <div class="hidden justify-center gap-4" id="stepNumbers">
         <div
           class="step-number w-9 h-9 rounded-full bg-primary border border-primary text-white font-semibold text-sm flex items-center justify-center cursor-pointer transition-all"
@@ -122,19 +116,16 @@
       </div>
     </div>
 
-    <!-- Content -->
     <div class="flex min-h-[600px] max-h-[calc(100dvh-200px)]">
 
-      <!-- Sidebar (Desktop) -->
+      <!-- (Desktop) -->
       <div
         class="hidden lg:block w-auto min-w-[220px] max-w-[280px] pt-24 px-5 pb-5 border-r-2 border-primary relative flex-shrink-0 bg-white">
         <div class="relative -top-[50px] -right-[15%] text-[32px] font-medium text-primary font-domine">
-
           Publisher
         </div>
         <div class="step-background absolute left-0 top-0 w-full h-10 bg-[#00265D] border-l-4 border-primary"
           id="stepBackground"></div>
-
         <div
           class="sidebar-step relative py-2.5 px-3 text-base text-white font-semibold cursor-pointer mb-9 whitespace-nowrap transition-all hover:opacity-70 z-10"
           data-step="1">
@@ -186,24 +177,26 @@
       <div class="flex-1 p-6 lg:p-10 overflow-y-auto custom-scrollbar bg-white">
         <div class="relative w-full h-full" id="formStepsContainer">
 
-          <!-- Step 1: Account Detail -->
+          <!-- Step 1 -->
           <div class="form-step opacity-100 pointer-events-auto" id="step1" data-step="1">
             <h2 class="text-xl text-black font-semibold mb-2">Account detail</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
-              below.</p>
-
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">
+              Provide your company or business information. This helps us verify your account and ensure compliance with
+              our network requirements.
+            </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Company Name <span
                     class="text-red-500">*</span></label>
-                <input type="text" name="companyName" placeholder="Enter company name" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="text" name="companyName" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Company Website <span
-                    class="text-red-500">*</span></label>
+                <label class="block text-base font-medium text-black mb-2">Company Website
+                  <span class="text-red-500">*</span>
+                </label>
                 <input type="url" name="companyWebsite" placeholder="https://" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
             </div>
 
@@ -211,14 +204,14 @@
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Address <span
                     class="text-red-500">*</span></label>
-                <input type="text" name="address" placeholder="Enter address" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="text" name="address" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">City <span
                     class="text-red-500">*</span></label>
-                <input type="text" name="city" placeholder="Enter city" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="text" name="city" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
             </div>
 
@@ -227,7 +220,7 @@
                 <label class="block text-base font-medium text-black mb-2">Country <span
                     class="text-red-500">*</span></label>
                 <select name="country" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all cursor-pointer">
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:shadow-[0_0_18px_rgba(255,255,255,0.25)] transition-shadow duration-200 cursor-pointer">
                   <option value="" class="bg-white text-black">Select country</option>
                   <option value="vn" class="bg-white text-black">Vietnam</option>
                   <option value="us" class="bg-white text-black">United States</option>
@@ -238,7 +231,7 @@
                 <label class="block text-base font-medium text-black mb-2">State/Region <span
                     class="text-red-500">*</span></label>
                 <select name="state" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all cursor-pointer">
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:shadow-[0_0_18px_rgba(255,255,255,0.25)] transition-shadow duration-200 cursor-pointer">
                   <option value="" class="bg-white text-black">Select region</option>
                   <option value="hcm" class="bg-white text-black">Ho Chi Minh</option>
                   <option value="hn" class="bg-white text-black">Ha Noi</option>
@@ -251,8 +244,8 @@
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">ZIP/Postal Code <span
                     class="text-red-500">*</span></label>
-                <input type="text" name="zipCode" placeholder="Enter postal code" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="text" name="zipCode" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
               <div class="form-group"></div>
             </div>
@@ -276,21 +269,23 @@
           <!-- Step 2: User Detail -->
           <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step2" data-step="2">
             <h2 class="text-xl text-black font-semibold mb-2">User detail</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
-              below. <span class="text-red-500">*</span> - required field</p>
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">
+              Enter the primary contact and login details for your account. This information will be used for account
+              access and important communications.
+            </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">First Name <span
                     class="text-red-500">*</span></label>
-                <input type="text" name="firstName" placeholder="Enter first name" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="text" name="firstName" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Last Name <span
                     class="text-red-500">*</span></label>
-                <input type="text" name="lastName" placeholder="Enter last name" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="text" name="lastName" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
             </div>
 
@@ -298,14 +293,14 @@
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Email <span
                     class="text-red-500">*</span></label>
-                <input type="email" name="email" placeholder="Enter email" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="email" name="email" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Email Confirmation <span
                     class="text-red-500">*</span></label>
-                <input type="email" name="emailConfirm" placeholder="Confirm email" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="email" name="emailConfirm" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
             </div>
 
@@ -313,14 +308,14 @@
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Password <span
                     class="text-red-500">*</span></label>
-                <input type="password" name="password" placeholder="Enter password" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="password" name="password" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Confirm Password <span
                     class="text-red-500">*</span></label>
-                <input type="password" name="passwordConfirm" placeholder="Confirm password" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="password" name="passwordConfirm" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
             </div>
 
@@ -328,8 +323,8 @@
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Phone Number <span
                     class="text-red-500">*</span></label>
-                <input type="tel" name="phone" placeholder="Enter phone number" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="tel" name="phone" placeholder="84+ 0102030405" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
               <div class="form-group"></div>
             </div>
@@ -360,21 +355,22 @@
           <!-- Step 3: Traffic Detail -->
           <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step3" data-step="3">
             <h2 class="text-xl text-black font-semibold mb-2">Traffic Detail</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
-              below. <span class="text-red-500">*</span> - required field</p>
-
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">
+              Tell us how and where you plan to promote offers. This helps us evaluate traffic quality and approve
+              suitable campaigns.
+            </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Promotional Method <span
                     class="text-red-500">*</span></label>
                 <input type="text" name="promotionalMethod" placeholder="Enter promotional method" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Countries <span
                     class="text-red-500">*</span></label>
                 <input type="text" name="countries" placeholder="Enter countries" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
             </div>
 
@@ -383,13 +379,13 @@
                 <label class="block text-base font-medium text-black mb-2">Property Type <span
                     class="text-red-500">*</span></label>
                 <input type="text" name="propertyType" placeholder="Enter property type" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">URL <span
                     class="text-red-500">*</span></label>
-                <input type="url" name="url" placeholder="Enter URL" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                <input type="url" name="url" placeholder="https://" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
             </div>
 
@@ -419,14 +415,15 @@
           <!-- Step 4: Additional Information -->
           <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step4" data-step="4">
             <h2 class="text-xl text-black font-semibold mb-2">Additional Information</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
-              below. <span class="text-red-500">*</span> - required field</p>
-
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">
+              Share additional details about your marketing experience, promotional channels, and advertising methods to
+              help us better understand your business model.
+            </p>
             <div class="grid grid-cols-1 gap-5 mb-4">
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Referral Code</label>
                 <input type="text" name="referralCode" placeholder="Enter referral code (optional)"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
             </div>
 
@@ -435,14 +432,14 @@
                 <label class="block text-base font-medium text-black mb-2">Marketing Channels <span
                     class="text-red-500">*</span></label>
                 <input type="text" name="marketingChannels" placeholder="Enter marketing channels" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
               <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Affiliate Classification <span
                     class="text-red-500">*</span></label>
                 <input type="text" name="affiliateClassification" placeholder="Enter classification"
                   data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
               </div>
             </div>
 
@@ -491,8 +488,9 @@
           <!-- Step 5: Terms and Conditions -->
           <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step5" data-step="5">
             <h2 class="text-xl text-black font-semibold mb-2">Terms and Conditions</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Apply to our network by submitting your information
-              below. <span class="text-red-500">*</span> - required field</p>
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">
+              Review and accept our Terms of Service to complete your application and proceed with account approval.
+            </p>
 
             <div class="grid grid-cols-1 gap-5 mb-4">
               <div class="form-group">
@@ -553,10 +551,7 @@
     </div>
   </div>
 
-  <!-- Notyf JS -->
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-
-  <!-- Main JavaScript -->
   <script src="../javascript/notyf-config.js"></script>
   <script src="../javascript/register.js"></script>
 

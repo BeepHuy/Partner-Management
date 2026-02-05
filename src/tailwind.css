@@ -66,19 +66,16 @@
     }
 }
 
-/* Login Dropdown */
 .login-dropdown.active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-/* Toast success nền trắng mờ + chữ đen */
 .notyf__toast--success {
     background: #ffffff69 !important;
     color: #000 !important;
     backdrop-filter: blur(6px);
-    /* optional: nhìn sang hơn */
 }
 
 .notyf__icon--success {
@@ -90,5 +87,13 @@
 .notyf__toast--success .notyf__ripple {
     background: #ffffff69 !important;
     backdrop-filter: blur(6px);
-    /* optional: nhìn sang hơn */
+}
+
+.notyf__toast {
+    padding: 10px 15px !important;
+    border-radius: 50px !important;
+}
+
+.notyf__wrapper {
+    padding: 0 !important;
 }

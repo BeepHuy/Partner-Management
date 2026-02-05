@@ -5,55 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Kim Huy</title>
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-    <!-- Compiled Tailwind CSS -->
     <link rel="stylesheet" href="../../../dist/app.css">
-
-    <!-- Notyf CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 </head>
 
 <body class="bg-custom-gradient min-h-screen flex items-center justify-center p-4">
-
     <div class="w-full">
         <!-- Main Container -->
-        <section class="w-full max-w-[1000px] mx-auto flex rounded-[10px] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3)]
-                        flex-col md:flex-row">
-
+        <section
+            class="w-full max-w-[1000px] mx-auto flex rounded-[10px] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3)] flex-col md:flex-row">
             <!-- Login Info Section -->
             <div class="flex-1 py-8 md:py-5 bg-primary text-white flex items-center justify-center">
                 <div class="w-full max-w-[430px] px-6 md:px-4">
-                    <!-- Logo -->
                     <div class="mb-4 text-center">
                         <img src="../../assets/logo-images/logo 1.png" alt="Worldwide Affiliate"
                             class="w-[94px] mx-auto">
                     </div>
-
                     <!-- Title -->
                     <h1 class="text-xl md:text-[22px] font-extrabold mb-1.5 text-center">Worldwide Affiliate</h1>
                     <p class="text-sm md:text-base opacity-80 mb-6 md:mb-8 text-center">Sign in to continue</p>
-
                     <!-- Form -->
                     <form class="login-form" id="loginForm">
-                        <!-- Email Field -->
                         <div class="text-left mb-4 md:mb-5">
-                            <label class="text-sm md:text-base font-bold mb-1.5 block">Email <span
-                                    class="text-red-400">*</span></label>
+                            <label class="text-sm md:text-base font-bold mb-1.5 block">Email
+                                <span class="text-red-400">*</span>
+                            </label>
                             <input type="email" id="emailInput" name="email" placeholder="Enter your email"
-                                class="w-full h-10 md:h-10 text-sm md:text-base rounded-[10px] border-2 border-white px-3.5 bg-white/25 text-white placeholder-white/60 focus:outline-none focus:bg-white/40 focus:border-white transition-all duration-300 focus:-translate-y-0.5">
+                                class="w-full h-10 md:h-10 text-sm md:text-base rounded-[10px] border-2 border-white px-3.5  bg-white/25  text-white  placeholder-white/60 focus:outline-none  focus:bg-white/40 focus:shadow-[0_0_18px_rgba(255,255,255,0.25)] transition-[background-color,box-shadow] duration-200">
                         </div>
 
-                        <!-- Password Field -->
                         <div class="text-left mb-4 md:mb-5">
-                            <label class="text-sm md:text-base font-bold mb-1.5 block">Password <span
-                                    class="text-red-400">*</span></label>
+                            <label class="text-sm md:text-base font-bold mb-1.5 block">Password
+                                <span class="text-red-400">*</span>
+                            </label>
                             <div class="relative">
                                 <input type="password" id="passwordInput" name="password"
                                     placeholder="Enter your password"
-                                    class="w-full h-10 md:h-10 text-sm md:text-base rounded-[10px] border-2 border-white px-3.5 pr-12 bg-white/25 text-white placeholder-white/60 focus:outline-none focus:bg-white/40 focus:border-white transition-all duration-300 focus:-translate-y-0.5">
+                                    class="w-full h-10 md:h-10 text-sm md:text-base rounded-[10px] border-2 border-white px-3.5 pr-12 bg-white/25 text-white placeholder-white/60 focus:outline-none focus:bg-white/40 focus:shadow-[0_0_18px_rgba(255,255,255,0.25)] transition-[background-color,box-shadow] duration-200">
                                 <span id="toggleEye"
                                     class="absolute right-3.5 top-1/2 -translate-y-1/2 cursor-pointer opacity-80 hover:opacity-100 transition-all">
                                     <i class="fa fa-eye text-white transition-all duration-300 hover:scale-110"></i>
@@ -61,7 +50,6 @@
                             </div>
                         </div>
 
-                        <!-- Options -->
                         <div
                             class="flex flex-col md:flex-row md:justify-between text-xs md:text-sm gap-3 md:gap-0 my-4 md:my-3.5 md:mb-7">
                             <a href="#" class="text-white hover:underline transition-all">Password Recovering</a>
@@ -71,7 +59,6 @@
                             </label>
                         </div>
 
-                        <!-- Submit Button -->
                         <button type="submit"
                             class="w-full md:w-[200px] h-11 text-sm md:text-base rounded-[10px] border-none bg-white text-primary font-extrabold cursor-pointer mb-6 md:mb-7 transition-all duration-300 mx-auto block hover:-translate-y-0.5 hover:shadow-[0_5px_15px_rgba(0,0,0,0.2)]">
                             SIGN IN

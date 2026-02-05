@@ -31,7 +31,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        <div class="login-dropdown absolute right-0 top-full mt-2 min-w-[160px] bg-white border border-[#00265D] rounded-xl shadow-[0_4px_12px_rgba(0,38,93,0.15)] overflow-hidden z-[100] opacity-0 invisible -translate-y-2 transition-all duration-300 ease-in-out"
+        <div
+          class="login-dropdown absolute right-0 top-full mt-2 min-w-[160px] bg-white border border-[#00265D] rounded-xl shadow-[0_4px_12px_rgba(0,38,93,0.15)] overflow-hidden z-[100] opacity-0 invisible -translate-y-2 transition-all duration-300 ease-in-out"
           id="loginDropdown">
           <div
             class="px-5 py-3 text-[#00265D] font-semibold cursor-pointer border-b border-[#E9F2FF] transition-all duration-200 hover:bg-[#E9F2FF] hover:scale-[1.05] last:border-b-0"
@@ -59,27 +60,35 @@
 
       <!-- Step Pills (Tablet) -->
       <div class="flex justify-center flex-wrap gap-2" id="stepPills">
-        <div class="step-pill flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-full font-semibold text-sm cursor-pointer transition-all hover:opacity-80"
+        <div
+          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-full font-semibold text-sm cursor-pointer transition-all hover:opacity-80"
           data-step="1">
-          <div class="pill-indicator w-5 h-5 rounded-full bg-white text-primary flex items-center justify-center text-xs">
+          <div
+            class="pill-indicator w-5 h-5 rounded-full bg-white text-primary flex items-center justify-center text-xs">
             1</div>
           <span class="pill-text">General</span>
         </div>
-        <div class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
+        <div
+          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
           data-step="2">
-          <div class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
+          <div
+            class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
             2</div>
           <span class="pill-text">Company</span>
         </div>
-        <div class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
+        <div
+          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
           data-step="3">
-          <div class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
+          <div
+            class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
             3</div>
           <span class="pill-text">Billing</span>
         </div>
-        <div class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
+        <div
+          class="step-pill flex items-center gap-1.5 px-4 py-2 bg-inputtb rounded-full text-white font-semibold text-sm cursor-pointer transition-all hover:border-primary/50"
           data-step="4">
-          <div class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
+          <div
+            class="pill-indicator w-5 h-5 rounded-full bg-inputBg flex items-center justify-center text-xs text-primary">
             4</div>
           <span class="pill-text">Campaign</span>
         </div>
@@ -106,14 +115,16 @@
     <div class="flex min-h-[600px] max-h-[calc(100dvh-200px)]">
 
       <!-- Sidebar (Desktop) -->
-      <div class="hidden lg:block w-auto min-w-[220px] max-w-[280px] pt-24 px-5 pb-5 border-r-2 border-primary relative flex-shrink-0 bg-white">
+      <div
+        class="hidden lg:block w-auto min-w-[220px] max-w-[280px] pt-24 px-5 pb-5 border-r-2 border-primary relative flex-shrink-0 bg-white">
         <div class="relative -top-[50px] -right-[15%] text-[32px] font-medium text-primary font-domine">
-            Advertiser
+          Advertiser
         </div>
         <div class="step-background absolute left-0 top-0 w-full h-10 bg-[#00265D] border-l-4 border-primary"
           id="stepBackground"></div>
 
-        <div class="sidebar-step relative py-2.5 px-3 text-base text-white font-semibold cursor-pointer mb-9 whitespace-nowrap transition-all hover:opacity-70 z-10"
+        <div
+          class="sidebar-step relative py-2.5 px-3 text-base text-white font-semibold cursor-pointer mb-9 whitespace-nowrap transition-all hover:opacity-70 z-10"
           data-step="1">
           <span>General Information</span>
           <div
@@ -157,7 +168,8 @@
           <!-- Step 1: General Information -->
           <div class="form-step opacity-100 pointer-events-auto" id="step1" data-step="1">
             <h2 class="text-xl text-black font-semibold mb-2">General Information</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Basic information of the registered representative. Used to verify the account and contact you during the review process.</p>
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">Basic information of the registered representative.
+              Used to verify the account and contact you during the review process.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
               <div class="form-group">
@@ -191,6 +203,21 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
               <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Password <span
+                    class="text-red-500">*</span></label>
+                <input type="password" name="password" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
+              </div>
+              <div class="form-group">
+                <label class="block text-base font-medium text-black mb-2">Confirm Password <span
+                    class="text-red-500">*</span></label>
+                <input type="password" name="passwordConfirm" data-required="true"
+                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base placeholder:text-gray-400 focus:outline-none focus:bg-inputBg focus:shadow-[0_0_22px_rgba(255,255,255,0.25)] transition-shadow duration-200">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+              <div class="form-group">
                 <label class="block text-base font-medium text-black mb-2">Phone Number <span
                     class="text-red-500">*</span></label>
                 <input type="tel" name="phone" placeholder="" data-required="true"
@@ -218,7 +245,8 @@
           <!-- Step 2: Company & Online Presence -->
           <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step2" data-step="2">
             <h2 class="text-xl text-black font-semibold mb-2">Company & Online Presence</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Provide information about the business, website, or platform running the campaign to assess the credibility and content of the offer.</p>
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">Provide information about the business, website, or
+              platform running the campaign to assess the credibility and content of the offer.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
               <div class="form-group">
@@ -237,9 +265,9 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Example Offer Landing Page / Product Page <span
-                    class="text-red-500">*</span></label>
-                <input type="url" name="landingPage" placeholder="" data-required="true"
+                <label class="block text-base font-medium text-black mb-2">Example Offer Landing Page / Product Page
+                  <span class="text-red-500">*</span></label>
+                <input type="url" name="landingPage" placeholder="https://" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
               </div>
               <div class="form-group">
@@ -310,7 +338,8 @@
           <!-- Step 3: Billing & Communication -->
           <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step3" data-step="3">
             <h2 class="text-xl text-black font-semibold mb-2">Billing & Communication</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Details about the campaign you wish to run on the system and the required terms of cooperation.</p>
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">Details about the campaign you wish to run on the
+              system and the required terms of cooperation.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
               <div class="form-group">
@@ -389,7 +418,8 @@
           <!-- Step 4: Campaign Details & Terms -->
           <div class="form-step absolute top-0 left-0 w-full opacity-0 pointer-events-none" id="step4" data-step="4">
             <h2 class="text-xl text-black font-semibold mb-2">Campaign Details & Terms</h2>
-            <p class="text-gray-600 text-base mb-6 leading-relaxed">Details about the campaign you wish to run on the system and the required terms of cooperation.</p>
+            <p class="text-gray-600 text-base mb-6 leading-relaxed">Details about the campaign you wish to run on the
+              system and the required terms of cooperation.</p>
 
             <div class="grid grid-cols-1 gap-5 mb-4">
               <div class="form-group">
@@ -402,8 +432,8 @@
 
             <div class="grid grid-cols-1 gap-5 mb-4">
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">What is the payout you are offering per conversion? <span
-                    class="text-red-500">*</span></label>
+                <label class="block text-base font-medium text-black mb-2">What is the payout you are offering per
+                  conversion? <span class="text-red-500">*</span></label>
                 <input type="text" name="payout" placeholder="" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
               </div>
@@ -411,8 +441,8 @@
 
             <div class="grid grid-cols-1 gap-5 mb-4">
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">What countries are valid for your campaign? <span
-                    class="text-red-500">*</span></label>
+                <label class="block text-base font-medium text-black mb-2">What countries are valid for your campaign?
+                  <span class="text-red-500">*</span></label>
                 <input type="text" name="validCountries" placeholder="" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
               </div>
@@ -429,8 +459,8 @@
 
             <div class="grid grid-cols-1 gap-5 mb-4">
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">What channels of traffic are open for your campaign? <span
-                    class="text-red-500">*</span></label>
+                <label class="block text-base font-medium text-black mb-2">What channels of traffic are open for your
+                  campaign? <span class="text-red-500">*</span></label>
                 <input type="text" name="trafficChannels" placeholder="" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400">
               </div>
@@ -438,8 +468,8 @@
 
             <div class="grid grid-cols-1 gap-5 mb-4">
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Briefly describe your product or service? <span
-                    class="text-red-500">*</span></label>
+                <label class="block text-base font-medium text-black mb-2">Briefly describe your product or service?
+                  <span class="text-red-500">*</span></label>
                 <textarea name="productDescription" placeholder="" data-required="true"
                   class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400 resize-y min-h-[70px]"></textarea>
               </div>
@@ -447,10 +477,25 @@
 
             <div class="grid grid-cols-1 gap-5 mb-4">
               <div class="form-group">
-                <label class="block text-base font-medium text-black mb-2">Ray Advertising Terms <span
-                    class="text-red-500">*</span></label>
-                <textarea name="rayTerms" placeholder="" data-required="true"
-                  class="w-full px-4 py-2.5 bg-[rgba(233,242,255,0.4)] border border-primary rounded-md text-black text-base focus:outline-none focus:border-primary focus:shadow-[0_0_10px_rgba(0,38,93,0.2)] focus:bg-inputBg transition-all placeholder:text-gray-400 resize-y min-h-[120px]"></textarea>
+                <label class="block text-base font-medium text-black mb-2">Ray Advertising Terms</label>
+                <div
+                  class="bg-[rgba(233,242,255,0.4)] border border-primary rounded-md p-5 max-h-[220px] overflow-y-auto custom-scrollbar text-black text-sm leading-relaxed">
+                  <p class="mb-3">This Service Agreement ("Agreement") is established between Ray Advertising LLC
+                    (referred to as the "Company") and the Lead Provider specified in the Insertion Order, which is
+                    expressly referenced and incorporated into this Agreement. Each entity may individually be referred
+                    to as a "Party" or collectively as the "Parties."</p>
+
+                  <h4 class="text-primary font-semibold mb-2">Recitals:</h4>
+                  <p class="mb-3">Acknowledging the Insertion Order: The terms outlined in the "Insertion Order" are
+                    tailored specifically to govern the relationship between the Company and the Lead Provider. These
+                    terms shall take precedence over and override any conflicting provisions within this Agreement.</p>
+
+                  <h4 class="text-primary font-semibold mb-2">Scope of Lead Provider's Engagement:</h4>
+                  <p class="mb-3">The Lead Provider agrees to execute a range of advertising and marketing campaigns on
+                    behalf of the Company. The specifications and operational details of these campaigns will be defined
+                    in order form, each of which will automatically be integrated into and considered an integral
+                    component of this Agreement.</p>
+                </div>
               </div>
             </div>
 
