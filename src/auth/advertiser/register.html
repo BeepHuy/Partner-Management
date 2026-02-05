@@ -5,20 +5,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Advertiser</title>
-
-  <!-- Compiled Tailwind CSS -->
   <link rel="stylesheet" href="../../../dist/app.css">
-
-  <!-- Notyf CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 </head>
 
-<body class="bg-custom-gradient min-h-screen flex items-center justify-center p-4">
+<body class="min-h-[100dvh] flex items-center justify-center p-4 bg-white relative">
 
-  <div class="bg-white w-full max-w-[1100px] rounded-xl shadow-2xl overflow-hidden">
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="hidden lg:block">
+      <div class="absolute top-[7%] left-0 w-full h-[120%] bg-[#00265D] origin-top-left rotate-[21deg] scale-[1.4]">
+      </div>
+    </div>
+    <div class="hidden md:block lg:hidden">
+      <div class="absolute top-[12%] left-0 w-full h-[130%] bg-[#00265D] origin-top-left rotate-[25deg] scale-[1.5]">
+      </div>
+    </div>
+    <div class="md:hidden">
+      <div class="absolute top-[18%] left-0 w-full h-[140%] bg-[#00265D] origin-top-left rotate-[30deg] scale-[1.6]">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bg-white w-full max-w-[1100px] rounded-xl shadow-2xl overflow-hidden relative z-10">
 
     <!-- Header -->
-    <div class="h-20 flex justify-between items-center px-10 border-b-2 border-primary bg-primary">
+    <div class="h-20 flex justify-between items-center px-8 border-b-2 border-primary bg-primary">
       <div class="flex items-center max-w-[260px] h-full">
         <img src="../../assets/logo-images/logo 1.png" alt="Logo" class="max-h-[60px] w-auto object-contain">
       </div>
@@ -48,7 +60,7 @@
       </div>
     </div>
 
-    <!-- Progress Section (Tablet/Mobile) -->
+    <!-- (Tablet/Mobile) -->
     <div class="hidden lg:hidden px-5 py-4 border-b-2 border-primary bg-white" id="progressSection">
       <div class="flex justify-between items-center mb-3">
         <span class="text-black text-sm font-medium">Step <span id="currentStepText">1</span> of 4</span>
@@ -58,7 +70,7 @@
         <div class="h-full bg-primary rounded-full progress-fill" id="progressFill" style="width: 25%"></div>
       </div>
 
-      <!-- Step Pills (Tablet) -->
+      <!-- (Tablet) -->
       <div class="flex justify-center flex-wrap gap-2" id="stepPills">
         <div
           class="step-pill flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-full font-semibold text-sm cursor-pointer transition-all hover:opacity-80"
@@ -94,7 +106,7 @@
         </div>
       </div>
 
-      <!-- Step Numbers (Mobile) -->
+      <!-- (Mobile) -->
       <div class="hidden justify-center gap-4" id="stepNumbers">
         <div
           class="step-number w-9 h-9 rounded-full bg-primary border border-primary text-white font-semibold text-sm flex items-center justify-center cursor-pointer transition-all"
@@ -114,13 +126,13 @@
     <!-- Content -->
     <div class="flex min-h-[600px] max-h-[calc(100dvh-200px)]">
 
-      <!-- Sidebar (Desktop) -->
+      <!-- (Desktop) -->
       <div
         class="hidden lg:block w-auto min-w-[220px] max-w-[280px] pt-24 px-5 pb-5 border-r-2 border-primary relative flex-shrink-0 bg-white">
-        <div class="relative -top-[50px] -right-[15%] text-[32px] font-medium text-primary font-domine">
+        <div class="relative -top-[45px] -right-[5%] text-[32px] font-medium text-primary font-domine">
           Advertiser
         </div>
-        <div class="step-background absolute left-0 top-0 w-full h-10 bg-[#00265D] border-l-4 border-primary"
+        <div class="step-background absolute left-0 top-0 w-full h-[2.8rem] bg-[#00265D] border-l-4 border-primary"
           id="stepBackground"></div>
 
         <div
