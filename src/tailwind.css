@@ -97,3 +97,89 @@
 .notyf__wrapper {
     padding: 0 !important;
 }
+
+/* ========================================
+   DIAGONAL BACKGROUND SYSTEM
+   ======================================== */
+
+.diagonal-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Tam giác bên TRÁI */
+.diagonal-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, #0F2340, #001F3F);
+    clip-path: polygon(0 100%, 0 20%, 45% 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Tam giác bên PHẢI */
+.diagonal-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, #001F3F, #0F2340);
+    clip-path: polygon(55% 0, 100% 0, 100% 80%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.diagonal-bgadvertiser {
+    background: linear-gradient(to bottom, #001F3F, #0F2340);
+}
+
+.diagonal-bgadvertiser::after,
+.diagonal-bgadvertiser::before {
+    background: white !important;
+}
+
+/* Container cho các decorative elements */
+@layer components {
+
+    /* Đường kẽ bên TRÁI */
+    .diagonal-bg .line-left {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='gradLeft' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230054D9;stop-opacity:1'/%3E%3Cstop offset='30%25' style='stop-color:%230068BB;stop-opacity:1'/%3E%3Cstop offset='50%25' style='stop-color:%23006B88;stop-opacity:1'/%3E%3Cstop offset='70%25' style='stop-color:%23007FD1;stop-opacity:1'/%3E%3Cstop offset='90%25' style='stop-color:%233BAAFF;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%235DBFFF;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cline x1='0' y1='48' x2='30' y2='100' stroke='url(%23gradLeft)' stroke-width='1' stroke-dasharray='0.6 1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+
+    /* Đường kẽ bên PHẢI */
+    .diagonal-bg .line-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='gradRight' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230054D9;stop-opacity:1'/%3E%3Cstop offset='30%25' style='stop-color:%230068BB;stop-opacity:1'/%3E%3Cstop offset='50%25' style='stop-color:%23006B88;stop-opacity:1'/%3E%3Cstop offset='70%25' style='stop-color:%23007FD1;stop-opacity:1'/%3E%3Cstop offset='90%25' style='stop-color:%233BAAFF;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%235DBFFF;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cline x1='70' y1='0' x2='100' y2='50' stroke='url(%23gradRight)' stroke-width='1' stroke-dasharray='0.6 1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+
+    /* 3 Hình chữ nhật chồng chéo */
+    .diagonal-bg .decorative-boxes {
+        position: absolute;
+        bottom: -80px;
+        left: -60px;
+        width: 264px;
+        height: 200px;
+        z-index: 2;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' preserveAspectRatio='xMinYMin meet'%3E%3Cdefs%3E%3ClinearGradient id='blueGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300265D;stop-opacity:1'/%3E%3Cstop offset='20%25' style='stop-color:%23003B7F;stop-opacity:1'/%3E%3Cstop offset='40%25' style='stop-color:%230054BE;stop-opacity:1'/%3E%3Cstop offset='60%25' style='stop-color:%231F8BFB;stop-opacity:1'/%3E%3Cstop offset='80%25' style='stop-color:%233A8FD1;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%235AA6EB;stop-opacity:1'/%3E%3C/linearGradient%3E%3ClinearGradient id='pinkGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%236A56A2;stop-opacity:1'/%3E%3Cstop offset='20%25' style='stop-color:%236E448A;stop-opacity:1'/%3E%3Cstop offset='40%25' style='stop-color:%238F398B;stop-opacity:1'/%3E%3Cstop offset='60%25' style='stop-color:%23A02C80;stop-opacity:1'/%3E%3Cstop offset='80%25' style='stop-color:%23AF1F77;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%23AA1867;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='15' y='25' width='150' height='150' rx='15' fill='none' stroke='url(%23pinkGrad)' stroke-width='2.5' vector-effect='non-scaling-stroke'/%3E%3Crect x='40' y='50' width='150' height='150' rx='15' fill='none' stroke='url(%23blueGrad)' stroke-width='2.5' vector-effect='non-scaling-stroke'/%3E%3Crect x='80' y='70' width='150' height='150' rx='15' fill='none' stroke='url(%23blueGrad)' stroke-width='2.5' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+}
