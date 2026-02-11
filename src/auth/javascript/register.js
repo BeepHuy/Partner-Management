@@ -1,5 +1,3 @@
-
-
 // Login Dropdown Logic
 const loginBtn = document.getElementById("loginBtn");
 const loginDropdown = document.getElementById("loginDropdown");
@@ -517,12 +515,7 @@ function submitForm() {
   }
 
   stepCompleted[currentStep] = true;
-  NotifyHelper.success("Registration successful! Thank you for registering with Kyren Affiliate.");
-
-  setTimeout(() => {
-    console.log("Form submitted successfully");
-    // window.location.href = '/success';
-  }, 2000);
+  NotifyHelper.registrationSuccess();
 }
 
 function handleStepClick(targetStep) {
