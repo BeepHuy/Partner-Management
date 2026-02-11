@@ -518,14 +518,7 @@ function submitForm() {
   }
 
   stepCompleted[currentStep] = true;
-  NotifyHelper.success(
-    "Registration successful! Thank you for registering with Kyren Advertiser.",
-  );
-
-  setTimeout(() => {
-    console.log("Form submitted successfully");
-    // window.location.href = '/success';
-  }, 2000);
+  NotifyHelper.registrationSuccess();
 }
 
 function handleStepClick(targetStep) {
