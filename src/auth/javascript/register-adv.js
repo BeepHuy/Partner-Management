@@ -6,16 +6,9 @@ const loginIcon = document.getElementById("loginIcon");
 loginBtn.addEventListener("click", (e) => {
   e.stopPropagation();
   const isActive = loginDropdown.classList.toggle("active");
-
-  // Rotate icon
-  if (isActive) {
-    loginIcon.style.transform = "rotate(180deg)";
-  } else {
-    loginIcon.style.transform = "rotate(0deg)";
-  }
+  loginIcon.style.transform = isActive ? "rotate(180deg)" : "rotate(0deg)";
 });
 
-// Close dropdown when clicking outside
 document.addEventListener("click", (e) => {
   if (!loginBtn.contains(e.target) && !loginDropdown.contains(e.target)) {
     loginDropdown.classList.remove("active");
@@ -23,7 +16,239 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// Form Step Management
+// FORM VALIDATION ENGINE
+
+// Quy tắc validation
+const ValidationRules = {
+  email: {
+    test: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+    message: "Invalid email address",
+  },
+  url: {
+    test: (value) =>
+      value.startsWith("http://") || value.startsWith("https://"),
+    message: "The URL must start with http:// or https://",
+  },
+  phone: {
+    test: (value) => {
+      if (!/^[0-9+\-\s()]+$/.test(value)) return false;
+      return value.replace(/[^0-9]/g, "").length >= 10;
+    },
+    message:
+      "The phone number must contain at least 10 digits and only include numbers, +, -, (, )",
+  },
+  password: {
+    test: (value) => value.length >= 6,
+    message: "The password must be at least 6 characters long",
+  },
+  zipCode: {
+    test: (value) => /^[0-9]{4,10}$/.test(value),
+    message: "ZIP code must be 4–10 digits long",
+  },
+};
+
+// Validate một input đơn lẻ
+function validateInput(input) {
+  const value = input.value.trim();
+  const fieldName = getFieldName(input);
+
+  clearInputError(input);
+
+  // Check checkbox
+  if (input.type === "checkbox") {
+    if (!input.checked) {
+      setInputError(input);
+      return { valid: false, message: `You must agree to the terms and conditions` };
+    }
+    return { valid: true };
+  }
+
+  // Check required
+  if (!value) {
+    setInputError(input);
+    return { valid: false, message: `${fieldName} is required` };
+  }
+
+  // Check email
+  if (
+    input.type === "email" ||
+    input.name === "email" ||
+    input.name === "emailConfirm" ||
+    input.name === "billingEmail"
+  ) {
+    if (!ValidationRules.email.test(value)) {
+      setInputError(input);
+      return {
+        valid: false,
+        message: `${fieldName}: ${ValidationRules.email.message}`,
+      };
+    }
+  }
+
+  // Check URL
+  if (
+    input.type === "url" ||
+    input.name === "website" ||
+    input.name === "landingPage"
+  ) {
+    if (!ValidationRules.url.test(value)) {
+      setInputError(input);
+      return {
+        valid: false,
+        message: `${fieldName}: ${ValidationRules.url.message}`,
+      };
+    }
+  }
+
+  // Check phone
+  if (
+    input.type === "tel" ||
+    input.name === "phone" ||
+    input.name === "billingPhone"
+  ) {
+    if (!ValidationRules.phone.test(value)) {
+      setInputError(input);
+      return {
+        valid: false,
+        message: `${fieldName}: ${ValidationRules.phone.message}`,
+      };
+    }
+  }
+
+  // Check password
+  if (input.type === "password") {
+    if (!ValidationRules.password.test(value)) {
+      setInputError(input);
+      return {
+        valid: false,
+        message: `${fieldName}: ${ValidationRules.password.message}`,
+      };
+    }
+  }
+
+  // Check zipCode
+  if (input.name === "zipCode") {
+    if (!ValidationRules.zipCode.test(value)) {
+      setInputError(input);
+      return {
+        valid: false,
+        message: `${fieldName}: ${ValidationRules.zipCode.message}`,
+      };
+    }
+  }
+
+  // Check match fields
+  const stepElement = input.closest(".form-step");
+
+  if (input.name === "emailConfirm") {
+    const email = stepElement.querySelector('[name="email"]').value;
+    if (value !== email) {
+      setInputError(input);
+      return { valid: false, message: `${fieldName}: Email confirmation does not match` };
+    }
+  }
+
+  if (input.name === "passwordConfirm") {
+    const password = stepElement.querySelector('[name="password"]').value;
+    if (value !== password) {
+      setInputError(input);
+      return { valid: false, message: `Password confirmation does not match` };
+    }
+  }
+
+  return { valid: true };
+}
+
+// Validate step hiện tại
+function validateCurrentStep() {
+  const currentStepElement = document.querySelector(`#step${currentStep}`);
+  const requiredInputs = currentStepElement.querySelectorAll(
+    '[data-required="true"]',
+  );
+  const errors = [];
+
+  requiredInputs.forEach((input) => {
+    const result = validateInput(input);
+    if (!result.valid) {
+      errors.push({
+        field: getFieldName(input),
+        message: result.message,
+        step: stepNames[currentStep],
+        stepNum: currentStep,
+      });
+    }
+  });
+
+  return errors;
+}
+
+// Validate toàn bộ form
+function validateAllSteps() {
+  const allErrors = [];
+
+  // Clear tất cả error states
+  document.querySelectorAll('[data-required="true"]').forEach((el) => {
+    clearInputError(el);
+  });
+
+  for (let stepNum = 1; stepNum <= totalSteps; stepNum++) {
+    const stepElement = document.querySelector(`#step${stepNum}`);
+    const requiredInputs = stepElement.querySelectorAll(
+      '[data-required="true"]',
+    );
+
+    requiredInputs.forEach((input) => {
+      const result = validateInput(input);
+      if (!result.valid) {
+        allErrors.push({
+          field: getFieldName(input),
+          message: result.message,
+          step: stepNames[stepNum],
+          stepNum: stepNum,
+        });
+      }
+    });
+  }
+
+  return allErrors;
+}
+
+// Helper functions
+function getFieldName(input) {
+  const label = input.closest(".form-group")?.querySelector("label");
+  return label ? label.textContent.replace("*", "").trim() : "Trường này";
+}
+
+function setInputError(input) {
+  input.classList.add("border-red-500", "shadow-[0_0_6px_rgba(255,77,79,0.6)]");
+}
+
+function clearInputError(input) {
+  input.classList.remove(
+    "border-red-500",
+    "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
+  );
+}
+
+// Attach listeners để clear error khi user nhập
+function attachInputListeners() {
+  const allInputs = document.querySelectorAll('[data-required="true"]');
+
+  allInputs.forEach((input) => {
+    const eventType = input.type === "checkbox" ? "change" : "input";
+
+    input.addEventListener(eventType, function () {
+      if (this.type === "checkbox") {
+        if (this.checked) clearInputError(this);
+      } else {
+        if (this.value.trim() !== "") clearInputError(this);
+      }
+    });
+  });
+}
+
+// FORM STEP MANAGEMENT
+
 let currentStep = 1;
 const totalSteps = 4;
 
@@ -51,307 +276,79 @@ const progressFill = document.getElementById("progressFill");
 const currentStepText = document.getElementById("currentStepText");
 const currentStepName = document.getElementById("currentStepName");
 
-// Progress Visibility Management
-function updateProgressVisibility() {
-  const progressSection = document.getElementById("progressSection");
-  const stepPillsContainer = document.getElementById("stepPills");
-  const stepNumbersContainer = document.getElementById("stepNumbers");
-
-  if (window.innerWidth < 1024) {
-    progressSection.classList.remove("hidden");
-    progressSection.classList.add("block");
-
-    if (window.innerWidth < 768) {
-      stepPillsContainer.classList.add("hidden");
-      stepNumbersContainer.classList.remove("hidden");
-      stepNumbersContainer.classList.add("flex");
-    } else {
-      stepPillsContainer.classList.remove("hidden");
-      stepPillsContainer.classList.add("flex");
-      stepNumbersContainer.classList.add("hidden");
-      stepNumbersContainer.classList.remove("flex");
-    }
-  } else {
-    progressSection.classList.add("hidden");
-    progressSection.classList.remove("block");
-  }
-}
-
-// Validation Functions
-function validateCurrentStep() {
-  const currentStepElement = document.querySelector(`#step${currentStep}`);
-  const requiredInputs = currentStepElement.querySelectorAll(
-    '[data-required="true"]',
-  );
-  let isValid = true;
-
-  requiredInputs.forEach((input) => {
-    const value = input.value.trim();
-    input.classList.remove(
-      "border-red-500",
-      "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-    );
-
-    if (input.type === "checkbox") {
-      if (!input.checked) {
-        input.classList.add(
-          "border-red-500",
-          "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-        );
-        isValid = false;
-      }
-    } else if (!value || value === "") {
-      input.classList.add(
-        "border-red-500",
-        "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-      );
-      isValid = false;
-    }
-  });
-
-  return isValid;
-}
-
-function validateAllStepsForSubmit() {
-  let allErrors = [];
-
-  document.querySelectorAll('[data-required="true"]').forEach((el) => {
-    el.classList.remove(
-      "border-red-500",
-      "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-    );
-  });
-
-  for (let stepNum = 1; stepNum <= totalSteps; stepNum++) {
-    const stepElement = document.querySelector(`#step${stepNum}`);
-    const requiredInputs = stepElement.querySelectorAll(
-      '[data-required="true"]',
-    );
-
-    requiredInputs.forEach((input) => {
-      const value = input.value.trim();
-      let errorMessage = null;
-
-      const label = input.closest(".form-group")?.querySelector("label");
-      const fieldName = label
-        ? label.textContent.replace("*", "").trim()
-        : "Field";
-      const stepName = stepNames[stepNum];
-
-      if (input.type === "checkbox") {
-        if (!input.checked) {
-          input.classList.add(
-            "border-red-500",
-            "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-          );
-          errorMessage = {
-            field: fieldName,
-            message: `You must agree to the terms`,
-            step: stepName,
-            stepNum: stepNum,
-          };
-        }
-      } else if (!value || value === "") {
-        input.classList.add(
-          "border-red-500",
-          "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-        );
-        errorMessage = {
-          field: fieldName,
-          message: `${fieldName} is required`,
-          step: stepName,
-          stepNum: stepNum,
-        };
-      } else {
-        // Additional validations
-        if (input.type === "email") {
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(value)) {
-            input.classList.add(
-              "border-red-500",
-              "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-            );
-            errorMessage = {
-              field: fieldName,
-              message: `${fieldName} must be a valid email`,
-              step: stepName,
-              stepNum: stepNum,
-            };
-          }
-        } else if (
-          input.type === "url" ||
-          input.name === "website" ||
-          input.name === "landingPage"
-        ) {
-          if (!value.startsWith("http://") && !value.startsWith("https://")) {
-            input.classList.add(
-              "border-red-500",
-              "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-            );
-            errorMessage = {
-              field: fieldName,
-              message: `${fieldName} must start with http:// or https://`,
-              step: stepName,
-              stepNum: stepNum,
-            };
-          }
-        } else if (
-          input.type === "tel" ||
-          input.name === "phone" ||
-          input.name === "billingPhone"
-        ) {
-          const phoneRegex = /^[0-9+\-\s()]+$/;
-          if (!phoneRegex.test(value)) {
-            input.classList.add(
-              "border-red-500",
-              "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-            );
-            errorMessage = {
-              field: fieldName,
-              message: `${fieldName} can only contain numbers and +, -, (, )`,
-              step: stepName,
-              stepNum: stepNum,
-            };
-          } else if (value.replace(/[^0-9]/g, "").length < 10) {
-            input.classList.add(
-              "border-red-500",
-              "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-            );
-            errorMessage = {
-              field: fieldName,
-              message: `${fieldName} must have at least 10 digits`,
-              step: stepName,
-              stepNum: stepNum,
-            };
-          }
-        } else if (input.name === "emailConfirm") {
-          const email = stepElement.querySelector('[name="email"]').value;
-          if (value !== email) {
-            input.classList.add(
-              "border-red-500",
-              "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-            );
-            errorMessage = {
-              field: fieldName,
-              message: `${fieldName} does not match email`,
-              step: stepName,
-              stepNum: stepNum,
-            };
-          }
-        } else if (input.type === "password") {
-          if (value.length < 6) {
-            input.classList.add(
-              "border-red-500",
-              "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-            );
-            errorMessage = {
-              field: fieldName,
-              message: `${fieldName} Must be at least 6 characters long.`,
-              step: stepName,
-              stepNum: stepNum,
-            };
-          }
-          if (input.name === "passwordConfirm") {
-            const password =
-              stepElement.querySelector('[name="password"]').value;
-            if (value !== password) {
-              input.classList.add(
-                "border-red-500",
-                "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-              );
-              errorMessage = {
-                field: fieldName,
-                message: `${fieldName} Passwords do not match.`,
-                step: stepName,
-                stepNum: stepNum,
-              };
-            }
-          }
-        } else if (input.name === "zipCode") {
-          const zipRegex = /^[0-9]{4,10}$/;
-          if (!zipRegex.test(value)) {
-            input.classList.add(
-              "border-red-500",
-              "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-            );
-            errorMessage = {
-              field: fieldName,
-              message: `${fieldName} can only contain numbers (4-10 characters)`,
-              step: stepName,
-              stepNum: stepNum,
-            };
-          }
-        }
-      }
-
-      if (errorMessage) {
-        allErrors.push(errorMessage);
-      }
-    });
-  }
-
-  return allErrors;
-}
-
-function showErrorToasts(errors) {
-  NotifyHelper.showErrors(errors, 800);
-}
-
-function attachInputListeners() {
-  const allInputs = document.querySelectorAll('[data-required="true"]');
-
-  allInputs.forEach((input) => {
-    if (input.type === "checkbox") {
-      input.addEventListener("change", function () {
-        if (this.checked) {
-          this.classList.remove(
-            "border-red-500",
-            "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-          );
-        }
-      });
-    } else {
-      input.addEventListener("input", function () {
-        if (this.value.trim() !== "") {
-          this.classList.remove(
-            "border-red-500",
-            "shadow-[0_0_6px_rgba(255,77,79,0.6)]",
-          );
-        }
-      });
-    }
-  });
-}
-
 // Navigation Functions
-function canNavigateToStep(targetStep) {
-  if (targetStep === currentStep) {
-    return { allowed: true };
+function nextStep() {
+  const errors = validateCurrentStep();
+
+  if (errors.length > 0) {
+    NotifyHelper.showErrors(errors, 800);
+    return;
   }
 
+  stepCompleted[currentStep] = true;
+
+  if (currentStep < totalSteps) {
+    currentStep++;
+    updateSteps();
+  }
+}
+
+function prevStep() {
+  if (currentStep > 1) {
+    currentStep--;
+    updateSteps();
+  }
+}
+
+function submitForm() {
+  const errors = validateAllSteps();
+
+  if (errors.length > 0) {
+    // Jump to first error step
+    currentStep = errors[0].stepNum;
+    updateSteps();
+    NotifyHelper.showErrors(errors, 800);
+    return;
+  }
+
+  stepCompleted[currentStep] = true;
+  NotifyHelper.registrationSuccess();
+}
+
+// Step Click Handler
+function handleStepClick(targetStep) {
+  if (targetStep === currentStep) return;
+
+  // Allow backward navigation
   if (targetStep < currentStep) {
-    return { allowed: true, isBackward: true };
+    currentStep = targetStep;
+    updateSteps();
+    return;
   }
 
-  if (!validateCurrentStep()) {
-    return { allowed: false, reason: "current" };
+  // Forward navigation - validate current step first
+  const errors = validateCurrentStep();
+  if (errors.length > 0) {
+    NotifyHelper.showErrors(errors, 800);
+    return;
   }
 
-  if (targetStep > currentStep + 1) {
-    for (let i = currentStep + 1; i < targetStep; i++) {
-      if (!stepCompleted[i]) {
-        return {
-          allowed: false,
-          reason: "intermediate",
-          incompleteStep: i,
-        };
-      }
+  // Check if intermediate steps are completed
+  for (let i = currentStep + 1; i < targetStep; i++) {
+    if (!stepCompleted[i]) {
+      NotifyHelper.error(
+        `Please complete Step ${i}: ${stepNames[i]} before proceeding`,
+      );
+      return;
     }
   }
 
-  return { allowed: true, isBackward: false };
+  stepCompleted[currentStep] = true;
+  currentStep = targetStep;
+  updateSteps();
 }
 
+// Update UI
 function updateSteps() {
   // Update form steps visibility
   steps.forEach((step, index) => {
@@ -470,108 +467,30 @@ function moveBackground() {
   }
 }
 
-function nextStep() {
-  if (!validateCurrentStep()) {
-    return;
-  }
+// Progress Visibility Management
+function updateProgressVisibility() {
+  const progressSection = document.getElementById("progressSection");
+  const stepPillsContainer = document.getElementById("stepPills");
+  const stepNumbersContainer = document.getElementById("stepNumbers");
 
-  stepCompleted[currentStep] = true;
+  if (window.innerWidth < 1024) {
+    progressSection.classList.remove("hidden");
+    progressSection.classList.add("block");
 
-  const nextStepNum = currentStep + 1;
-  if (nextStepNum <= totalSteps) {
-    const nextSidebarStep = document.querySelector(
-      `.sidebar-step[data-step="${nextStepNum}"]`,
-    );
-    const nextPill = document.querySelector(
-      `.step-pill[data-step="${nextStepNum}"]`,
-    );
-    const nextNumber = document.querySelector(
-      `.step-number[data-step="${nextStepNum}"]`,
-    );
-
-    if (nextSidebarStep) nextSidebarStep.classList.remove("warning");
-    if (nextPill) nextPill.classList.remove("warning");
-    if (nextNumber) nextNumber.classList.remove("warning");
-  }
-
-  if (currentStep < totalSteps) {
-    currentStep++;
-    updateSteps();
-  }
-}
-
-function prevStep() {
-  if (currentStep > 1) {
-    currentStep--;
-    updateSteps();
-  }
-}
-
-function submitForm() {
-  const errors = validateAllStepsForSubmit();
-
-  if (errors.length > 0) {
-    currentStep = errors[0].stepNum;
-    updateSteps();
-    NotifyHelper.showErrors(errors, 800);
-    return;
-  }
-
-  stepCompleted[currentStep] = true;
-  NotifyHelper.registrationSuccess();
-}
-
-function handleStepClick(targetStep) {
-  if (targetStep === currentStep) return;
-
-  const navCheck = canNavigateToStep(targetStep);
-
-  if (!navCheck.allowed) {
-    if (navCheck.reason === "current") {
-      return;
-    } else if (navCheck.reason === "intermediate") {
-      sidebarSteps.forEach((s) => s.classList.remove("warning"));
-      stepPills.forEach((p) => p.classList.remove("warning"));
-      stepNumbers.forEach((n) => n.classList.remove("warning"));
-
-      const warningSidebarStep = document.querySelector(
-        `.sidebar-step[data-step="${navCheck.incompleteStep}"]`,
-      );
-      const warningPill = document.querySelector(
-        `.step-pill[data-step="${navCheck.incompleteStep}"]`,
-      );
-      const warningNumber = document.querySelector(
-        `.step-number[data-step="${navCheck.incompleteStep}"]`,
-      );
-
-      if (warningSidebarStep) warningSidebarStep.classList.add("warning");
-      if (warningPill) warningPill.classList.add("warning");
-      if (warningNumber) warningNumber.classList.add("warning");
-
-      return;
+    if (window.innerWidth < 768) {
+      stepPillsContainer.classList.add("hidden");
+      stepNumbersContainer.classList.remove("hidden");
+      stepNumbersContainer.classList.add("flex");
+    } else {
+      stepPillsContainer.classList.remove("hidden");
+      stepPillsContainer.classList.add("flex");
+      stepNumbersContainer.classList.add("hidden");
+      stepNumbersContainer.classList.remove("flex");
     }
+  } else {
+    progressSection.classList.add("hidden");
+    progressSection.classList.remove("block");
   }
-
-  if (!navCheck.isBackward) {
-    stepCompleted[currentStep] = true;
-  }
-
-  const targetSidebarStep = document.querySelector(
-    `.sidebar-step[data-step="${targetStep}"]`,
-  );
-  const targetPill = document.querySelector(
-    `.step-pill[data-step="${targetStep}"]`,
-  );
-  const targetNumber = document.querySelector(
-    `.step-number[data-step="${targetStep}"]`,
-  );
-
-  if (targetSidebarStep) targetSidebarStep.classList.remove("warning");
-  if (targetPill) targetPill.classList.remove("warning");
-  if (targetNumber) targetNumber.classList.remove("warning");
-
-  currentStep = targetStep;
-  updateSteps();
 }
 
 // Event Listeners
