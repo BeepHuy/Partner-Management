@@ -1,4 +1,4 @@
-// Login Dropdown Logic
+// LOGIN DROPDOWN LOGIC
 const loginBtn = document.getElementById("loginBtn");
 const loginDropdown = document.getElementById("loginDropdown");
 const loginIcon = document.getElementById("loginIcon");
@@ -17,8 +17,7 @@ document.addEventListener("click", (e) => {
 });
 
 // FORM VALIDATION ENGINE
-
-// Quy tắc validation
+// Quy tắc validation cho từng loại input
 const ValidationRules = {
   email: {
     test: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
@@ -58,7 +57,10 @@ function validateInput(input) {
   if (input.type === "checkbox") {
     if (!input.checked) {
       setInputError(input);
-      return { valid: false, message: `You must agree to the terms and conditions` };
+      return {
+        valid: false,
+        message: `You must agree to the terms and conditions`,
+      };
     }
     return { valid: true };
   }
@@ -144,7 +146,7 @@ function validateInput(input) {
     const email = stepElement.querySelector('[name="email"]').value;
     if (value !== email) {
       setInputError(input);
-      return { valid: false, message: `${fieldName}: Email confirmation does not match` };
+      return { valid: false, message: `Email confirmation does not match` };
     }
   }
 
@@ -159,34 +161,31 @@ function validateInput(input) {
   return { valid: true };
 }
 
-// Validate step hiện tại
+// Validate step hiện tại - CHỈ TRẢ VỀ LỖI ĐẦU TIÊN
 function validateCurrentStep() {
   const currentStepElement = document.querySelector(`#step${currentStep}`);
   const requiredInputs = currentStepElement.querySelectorAll(
     '[data-required="true"]',
   );
-  const errors = [];
+  let firstError = null;
 
   requiredInputs.forEach((input) => {
     const result = validateInput(input);
-    if (!result.valid) {
-      errors.push({
+    if (!result.valid && !firstError) {
+      firstError = {
         field: getFieldName(input),
         message: result.message,
         step: stepNames[currentStep],
         stepNum: currentStep,
-      });
+      };
     }
   });
 
-  return errors;
+  return firstError ? [firstError] : [];
 }
 
-// Validate toàn bộ form
+// Validate TRẢ VỀ LỖI ĐẦU TIÊN CỦA STEP ĐẦU TIÊN CÓ LỖI
 function validateAllSteps() {
-  const allErrors = [];
-
-  // Clear tất cả error states
   document.querySelectorAll('[data-required="true"]').forEach((el) => {
     clearInputError(el);
   });
@@ -196,21 +195,27 @@ function validateAllSteps() {
     const requiredInputs = stepElement.querySelectorAll(
       '[data-required="true"]',
     );
+    let firstErrorInStep = null;
 
     requiredInputs.forEach((input) => {
       const result = validateInput(input);
-      if (!result.valid) {
-        allErrors.push({
+      if (!result.valid && !firstErrorInStep) {
+        firstErrorInStep = {
           field: getFieldName(input),
           message: result.message,
           step: stepNames[stepNum],
           stepNum: stepNum,
-        });
+        };
       }
     });
+
+    // Nếu step này có lỗi, trả về lỗi đầu tiên và dừng lại
+    if (firstErrorInStep) {
+      return [firstErrorInStep];
+    }
   }
 
-  return allErrors;
+  return [];
 }
 
 // Helper functions
@@ -248,7 +253,6 @@ function attachInputListeners() {
 }
 
 // FORM STEP MANAGEMENT
-
 let currentStep = 1;
 const totalSteps = 4;
 
@@ -276,12 +280,12 @@ const progressFill = document.getElementById("progressFill");
 const currentStepText = document.getElementById("currentStepText");
 const currentStepName = document.getElementById("currentStepName");
 
-// Navigation Functions
+// NAVIGATION FUNCTIONS
 function nextStep() {
   const errors = validateCurrentStep();
 
   if (errors.length > 0) {
-    NotifyHelper.showErrors(errors, 800);
+    NotifyHelper.error(errors[0].message);
     return;
   }
 
@@ -304,10 +308,9 @@ function submitForm() {
   const errors = validateAllSteps();
 
   if (errors.length > 0) {
-    // Jump to first error step
     currentStep = errors[0].stepNum;
     updateSteps();
-    NotifyHelper.showErrors(errors, 800);
+    NotifyHelper.error(`[${errors[0].step}] ${errors[0].message}`);
     return;
   }
 
@@ -319,21 +322,18 @@ function submitForm() {
 function handleStepClick(targetStep) {
   if (targetStep === currentStep) return;
 
-  // Allow backward navigation
   if (targetStep < currentStep) {
     currentStep = targetStep;
     updateSteps();
     return;
   }
 
-  // Forward navigation - validate current step first
   const errors = validateCurrentStep();
   if (errors.length > 0) {
-    NotifyHelper.showErrors(errors, 800);
+    NotifyHelper.error(errors[0].message);
     return;
   }
 
-  // Check if intermediate steps are completed
   for (let i = currentStep + 1; i < targetStep; i++) {
     if (!stepCompleted[i]) {
       NotifyHelper.error(
@@ -348,7 +348,7 @@ function handleStepClick(targetStep) {
   updateSteps();
 }
 
-// Update UI
+// UI UPDATE FUNCTIONS
 function updateSteps() {
   // Update form steps visibility
   steps.forEach((step, index) => {
@@ -375,6 +375,7 @@ function updateSteps() {
         "bg-bgictich",
         "shadow-[0_0_10px_rgba(0,38,93,0.3)]",
       );
+      indicator.innerHTML = "✓";
     } else if (stepCompleted[stepNum]) {
       step.classList.add("text-black");
       step.classList.remove("text-white");
@@ -386,7 +387,7 @@ function updateSteps() {
       step.classList.remove("text-white");
       indicator.classList.add("bg-[#D9D9D9]");
       indicator.classList.remove(
-        "bg-primary",
+        "bg-bgictich",
         "shadow-[0_0_10px_rgba(0,38,93,0.3)]",
       );
       indicator.innerHTML = "";
@@ -405,20 +406,20 @@ function updateSteps() {
       pill.classList.remove("bg-inputtb", "border-primary/30");
       pill.classList.add("bg-primary", "border-primary");
       text.classList.add("text-white");
-      indicator.classList.remove("bg-inputBg", "text-primary");
+      indicator.classList.remove("bg-inputBg", "text-primary", "bg-bgictich");
       indicator.classList.add("bg-white", "text-primary");
       indicator.textContent = stepNum;
     } else if (stepCompleted[stepNum]) {
       pill.classList.remove("bg-primary");
       pill.classList.add("bg-inputtb");
-      indicator.classList.remove("bg-inputBg");
+      indicator.classList.remove("bg-inputBg", "bg-white");
       indicator.classList.add("bg-bgictich", "text-white");
       indicator.textContent = "✓";
     } else {
       pill.classList.remove("bg-primary", "border-primary");
       pill.classList.add("bg-inputtb", "border-primary/30");
+      indicator.classList.remove("bg-white", "bg-bgictich");
       indicator.classList.add("bg-inputBg", "text-primary");
-      indicator.classList.remove("bg-primary", "bg-white");
       indicator.textContent = stepNum;
     }
   });
@@ -446,15 +447,11 @@ function updateSteps() {
     }
   });
 
-  // Update progress bar
   const progress = (currentStep / totalSteps) * 100;
   progressFill.style.width = `${progress}%`;
 
-  // Update step text
   currentStepText.textContent = currentStep;
   currentStepName.textContent = stepNames[currentStep];
-
-  // Move background
   moveBackground();
 }
 
@@ -493,7 +490,7 @@ function updateProgressVisibility() {
   }
 }
 
-// Event Listeners
+// EVENT LISTENERS
 sidebarSteps.forEach((step) => {
   step.addEventListener("click", () => {
     const targetStep = parseInt(step.dataset.step, 10);
@@ -515,7 +512,7 @@ stepNumbers.forEach((num) => {
   });
 });
 
-// Initialize
+// INITIALIZE
 attachInputListeners();
 updateSteps();
 updateProgressVisibility();

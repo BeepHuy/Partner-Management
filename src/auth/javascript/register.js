@@ -16,8 +16,8 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// FORM VALIDATION ENGINE - PHẦN QUAN TRỌNG
-
+// FORM VALIDATION ENGINE
+// Quy tắc validation
 const ValidationRules = {
   email: {
     test: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
@@ -46,27 +46,32 @@ const ValidationRules = {
   },
 };
 
-// Hàm validate một input đơn lẻ
+// Validate một input đơn lẻ
 function validateInput(input) {
   const value = input.value.trim();
   const fieldName = getFieldName(input);
 
   clearInputError(input);
 
-  // Check required
+  // Check checkbox
   if (input.type === "checkbox") {
     if (!input.checked) {
       setInputError(input);
-      return { valid: false, message: `You must agree to the terms and conditions` };
+      return {
+        valid: false,
+        message: `You must agree to the terms and conditions`,
+      };
     }
     return { valid: true };
   }
 
+  // Check required
   if (!value) {
     setInputError(input);
     return { valid: false, message: `${fieldName} is required` };
   }
 
+  // Check email
   if (
     input.type === "email" ||
     input.name === "email" ||
@@ -81,6 +86,7 @@ function validateInput(input) {
     }
   }
 
+  // Check URL
   if (
     input.type === "url" ||
     input.name === "companyWebsite" ||
@@ -95,6 +101,7 @@ function validateInput(input) {
     }
   }
 
+  // Check phone
   if (input.type === "tel" || input.name === "phone") {
     if (!ValidationRules.phone.test(value)) {
       setInputError(input);
@@ -105,6 +112,7 @@ function validateInput(input) {
     }
   }
 
+  // Check password
   if (input.type === "password") {
     if (!ValidationRules.password.test(value)) {
       setInputError(input);
@@ -115,6 +123,7 @@ function validateInput(input) {
     }
   }
 
+  // Check zipCode
   if (input.name === "zipCode") {
     if (!ValidationRules.zipCode.test(value)) {
       setInputError(input);
@@ -125,7 +134,9 @@ function validateInput(input) {
     }
   }
 
+  // Check match fields
   const stepElement = input.closest(".form-step");
+
   if (input.name === "emailConfirm") {
     const email = stepElement.querySelector('[name="email"]').value;
     if (value !== email) {
@@ -145,31 +156,42 @@ function validateInput(input) {
   return { valid: true };
 }
 
+// Validate step hiện tại - CHỈ TRẢ VỀ LỖI ĐẦU TIÊN
 function validateCurrentStep() {
   const currentStepElement = document.querySelector(`#step${currentStep}`);
   const requiredInputs = currentStepElement.querySelectorAll(
     '[data-required="true"]',
   );
   const errors = [];
+  let firstError = null;
 
   requiredInputs.forEach((input) => {
     const result = validateInput(input);
     if (!result.valid) {
-      errors.push({
+      const error = {
         field: getFieldName(input),
         message: result.message,
         step: stepNames[currentStep],
         stepNum: currentStep,
-      });
+      };
+      errors.push(error);
+
+      // Lưu lỗi đầu tiên
+      if (!firstError) {
+        firstError = error;
+      }
     }
   });
 
-  return errors;
+  // Trả về chỉ lỗi đầu tiên (hoặc mảng rỗng nếu không có lỗi)
+  return firstError ? [firstError] : [];
 }
 
+// Validate toàn bộ form - TRẢ VỀ LỖI ĐẦU TIÊN CỦA TỪNG STEP
 function validateAllSteps() {
   const allErrors = [];
 
+  // Clear tất cả error states
   document.querySelectorAll('[data-required="true"]').forEach((el) => {
     clearInputError(el);
   });
@@ -179,18 +201,30 @@ function validateAllSteps() {
     const requiredInputs = stepElement.querySelectorAll(
       '[data-required="true"]',
     );
+    let firstErrorInStep = null;
 
     requiredInputs.forEach((input) => {
       const result = validateInput(input);
       if (!result.valid) {
-        allErrors.push({
+        const error = {
           field: getFieldName(input),
           message: result.message,
           step: stepNames[stepNum],
           stepNum: stepNum,
-        });
+        };
+
+        // Chỉ lưu lỗi đầu tiên của step này
+        if (!firstErrorInStep) {
+          firstErrorInStep = error;
+        }
       }
     });
+
+    // Nếu step này có lỗi, thêm vào danh sách và dừng lại
+    if (firstErrorInStep) {
+      allErrors.push(firstErrorInStep);
+      break;
+    }
   }
 
   return allErrors;
@@ -213,7 +247,7 @@ function clearInputError(input) {
   );
 }
 
-// Attach listeners để clear error khi user nhập liệu
+// Attach listeners để clear error khi user nhập
 function attachInputListeners() {
   const allInputs = document.querySelectorAll('[data-required="true"]');
 
@@ -231,7 +265,6 @@ function attachInputListeners() {
 }
 
 // FORM STEP MANAGEMENT
-
 let currentStep = 1;
 const totalSteps = 5;
 
@@ -266,7 +299,8 @@ function nextStep() {
   const errors = validateCurrentStep();
 
   if (errors.length > 0) {
-    NotifyHelper.showErrors(errors, 800);
+    // Chỉ hiển thị 1 thông báo lỗi đầu tiên
+    NotifyHelper.error(errors[0].message);
     return;
   }
 
@@ -292,7 +326,8 @@ function submitForm() {
     // Jump to first error step
     currentStep = errors[0].stepNum;
     updateSteps();
-    NotifyHelper.showErrors(errors, 800);
+    // Chỉ hiển thị 1 thông báo lỗi
+    NotifyHelper.error(`[${errors[0].step}] ${errors[0].message}`);
     return;
   }
 
@@ -314,7 +349,8 @@ function handleStepClick(targetStep) {
   // Forward navigation - validate current step first
   const errors = validateCurrentStep();
   if (errors.length > 0) {
-    NotifyHelper.showErrors(errors, 800);
+    // Chỉ hiển thị 1 thông báo lỗi
+    NotifyHelper.error(errors[0].message);
     return;
   }
 
@@ -322,7 +358,7 @@ function handleStepClick(targetStep) {
   for (let i = currentStep + 1; i < targetStep; i++) {
     if (!stepCompleted[i]) {
       NotifyHelper.error(
-        `Please complete Step ${i}: ${stepNames[i]}  before proceeding`,
+        `Please complete Step ${i}: ${stepNames[i]} before proceeding`,
       );
       return;
     }
@@ -346,7 +382,6 @@ function updateSteps() {
     }
   });
 
-  // Update sidebar steps
   sidebarSteps.forEach((step, index) => {
     const stepNum = index + 1;
     const indicator = step.querySelector(".step-indicator");
@@ -430,9 +465,11 @@ function updateSteps() {
     }
   });
 
+  // Update progress bar
   const progress = (currentStep / totalSteps) * 100;
   progressFill.style.width = `${progress}%`;
 
+  // Update step text
   currentStepText.textContent = currentStep;
   currentStepName.textContent = stepNames[currentStep];
 
@@ -448,6 +485,7 @@ function moveBackground() {
   }
 }
 
+// Progress Visibility Management
 function updateProgressVisibility() {
   const progressSection = document.getElementById("progressSection");
   const stepPillsContainer = document.getElementById("stepPills");
